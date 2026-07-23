@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Conferência de Mercadorias</title>
+<meta name="description" content="Sistema de conferência de mercadorias com área gerencial, dashboard e relatórios." />
+<meta name="theme-color" content="#1E2A4A" />
+<link rel="manifest" href="./manifest.json" />
+<link rel="icon" href="./icons/icon-192.png" />
+<link rel="apple-touch-icon" href="./icons/icon-192.png" />
+<link rel="stylesheet" href="./css/styles.css" />
+
+<!-- Supabase (nuvem) -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<!-- Relatórios -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.1/jspdf.plugin.autotable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+
+<!-- ============================== LOGIN ============================== -->
+<div id="loginScreen" class="login-wrap">
+  <div class="login-card">
+    <div class="login-brand">
+      <div class="logo-mark">CM</div>
+      <span>Conferência de Mercadorias</span>
+    </div>
+    <p class="subtitle">Entre com seu e-mail e senha para continuar.</p>
+
+    <div id="loginError" class="login-error hidden" role="alert"></div>
+
+    <form id="loginForm">
+      <div class="field">
+        <label for="loginEmail">E-mail</label>
+        <input id="loginEmail" name="email" type="email" required autocomplete="username" />
+      </div>
+      <div class="field">
+        <label for="loginSenha">Senha</label>
+        <input id="loginSenha" name="senha" type="password" required autocomplete="current-password" />
+      </div>
+      <button class="btn btn-primary btn-block" type="submit">Entrar</button>
+    </form>
+
+    <form id="signupForm" class="hidden">
+      <div class="field">
+        <label for="signupNome">Nome completo</label>
+        <input id="signupNome" name="nome" type="text" required autocomplete="name" />
+      </div>
+      <div class="field">
+        <label for="signupEmail">E-mail</label>
+        <input id="signupEmail" name="email" type="email" required autocomplete="username" />
+      </div>
+      <div class="field">
+        <label for="signupSenha">Senha</label>
+        <input id="signupSenha" name="senha" type="password" required minlength="6" autocomplete="new-password" />
+      </div>
+      <div class="field">
+        <label for="signupConfirmarSenha">Confirmar senha</label>
+        <input id="signupConfirmarSenha" name="confirmarSenha" type="password" required minlength="6" autocomplete="new-password" />
+      </div>
+      <div id="signupError" class="login-error hidden" role="alert"></div>
+      <button class="btn btn-primary btn-block" type="submit">Criar conta</button>
+      <div class="login-links"><a href="#" id="linkVoltarLogin">Voltar para o login</a></div>
+      <p class="muted small" style="margin-top:10px">Novas contas entram como <strong>Funcionário</strong>. Um administrador pode elevar seu nível de acesso depois, na tela Usuários.</p>
+    </form>
+
+    <div class="login-links" id="loginLinks">
+      <a href="#" id="linkCriarConta">Criar uma conta</a>
+    </div>
+
+    <div id="demoNotice" class="demo-notice hidden">
+      <strong>Modo demonstração ativo</strong> (sem Supabase conectado — dados ficam só neste navegador).<br />
+      Contas de teste: <code>funcionario@demo.com</code> · <code>gerente@demo.com</code> · <code>admin@demo.com</code><br />
+      Senha para todas: <code>demo123</code>
+    </div>
+  </div>
+</div>
+
+<!-- ============================== APP ============================== -->
+<div id="appScreen" class="app-shell hidden">
+
+  <header class="topbar">
+    <div class="brand"><div class="logo-mark">CM</div> Conferência</div>
+
+    <div class="topbar-search">
+      <label for="buscaGlobal" class="visually-hidden">Buscar por descrição, marca ou fornecedor</label>
+      <input id="buscaGlobal" type="text" placeholder="Buscar por descrição, marca ou fornecedor…" />
+    </div>
+
+    <div class="topbar-right">
+      <button class="icon-btn" id="btnTema" title="Alternar tema"><span id="iconeTema">🌙</span></button>
+      <div class="user-chip">
+        <div>
+          <div class="nome" id="userNome">—</div>
+          <span class="role-badge" id="userPapel">—</span>
+        </div>
+      </div>
+      <button class="btn btn-outline btn-sm" id="btnLogout" style="color:#fff;border-color:rgba(255,255,255,.35)">Sair</button>
+    </div>
+  </header>
+
+  <nav class="nav-tabs">
+    <button class="nav-btn" data-aba="conferencia" data-roles-permitidas="funcionario,gerente,administrador">📋 Conferência</button>
+    <button class="nav-btn" data-aba="gerencial" data-roles-permitidas="gerente,administrador">🗂️ Área Gerencial</button>
+    <button class="nav-btn" data-aba="dashboard" data-roles-permitidas="funcionario,gerente,administrador">📊 Dashboard</button>
+    <button class="nav-btn" data-aba="relatorios" data-roles-permitidas="gerente,administrador">🧾 Relatórios</button>
+    <button class="nav-btn" data-aba="usuarios" data-roles-permitidas="administrador">👤 Usuários</button>
+    <button class="nav-btn" data-aba="auditoria" data-roles-permitidas="administrador">🛡️ Auditoria</button>
+  </nav>
+
+  <div class="filtro-bar">
+    <label for="filtroDataIni">Período:</label>
+    <input type="date" id="filtroDataIni" />
+    <span class="muted small">até</span>
+    <label for="filtroDataFim" class="visually-hidden">Data final</label>
+    <input type="date" id="filtroDataFim" />
+  </div>
+
+  <main class="content">
+
+    <!-- ---------------- CONFERÊNCIA ---------------- -->
+    <section id="tela-conferencia" class="tela">
+      <h1>Área de Conferência</h1>
+      <p class="lead">Registre a mercadoria recebida. Assim que salvo, o item aparece automaticamente na Área Gerencial.</p>
+
+      <div class="card">
+        <div class="table-toolbar">
+          <h2 style="margin:0">Novo registro</h2>
+          <button type="button" class="btn btn-accent btn-sm" id="btnAdicionarProdutoConferencia">+ Adicionar Produto</button>
+        </div>
+        <p class="muted small" style="margin-top:-8px">Preencha o fornecedor e a data uma vez e acrescente quantos produtos quiser antes de salvar tudo de uma vez.</p>
+        <form id="formConferencia">
+          <div class="form-grid">
+            <div class="field"><label for="campoData">Data *</label><input id="campoData" name="data_conferencia" type="date" required /></div>
+            <div class="field" style="grid-column: span 2;"><label for="campoFornecedor">Fornecedor *</label><input id="campoFornecedor" name="fornecedor" type="text" required /></div>
+          </div>
+
+          <div id="itensConferencia"></div>
+
+          <template id="tplItemConferencia">
+            <div class="item-conferencia">
+              <div class="form-grid">
+                <div class="field"><label>Marca *</label><input name="marca" type="text" aria-label="Marca" required /></div>
+                <div class="field" style="grid-column: span 2;"><label>Descrição do produto *</label><input name="descricao" type="text" aria-label="Descrição do produto" required /></div>
+                <div class="field"><label>Quantidade *</label><input name="quantidade" type="number" min="0" step="1" aria-label="Quantidade" required /></div>
+                <div class="field" style="grid-column: 1 / -1;"><label>Observação</label><input name="observacao" type="text" aria-label="Observação" placeholder="Opcional" /></div>
+              </div>
+              <button type="button" class="btn btn-outline btn-sm btn-remover-item">🗑️ Remover este item</button>
+            </div>
+          </template>
+
+          <div class="form-actions" style="justify-content:space-between;">
+            <button type="button" class="btn btn-outline" id="btnAdicionarItem">+ Adicionar outro produto deste fornecedor</button>
+            <button type="submit" class="btn btn-primary">Salvar todos os itens</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="card">
+        <div class="table-toolbar">
+          <h2 style="margin:0">Registros conferidos</h2>
+          <span class="muted small" id="contadorConferencia">0 registro(s)</span>
+        </div>
+        <div class="table-wrap">
+          <table id="tabelaConferencia">
+            <thead><tr>
+              <th>Data</th><th>Fornecedor</th><th>Marca</th><th>Descrição</th><th class="num">Qtd</th><th>Observação</th><th class="col-acoes">Ações</th>
+            </tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------------- GERENCIAL ---------------- -->
+    <section id="tela-gerencial" class="tela hidden">
+      <h1>Área Gerencial</h1>
+      <p class="lead">Preços, categoria e localização vinculados a cada produto conferido, com cálculos automáticos.</p>
+
+      <div class="card">
+        <h2>💰 Valor total de compra por fornecedor</h2>
+        <div class="table-wrap">
+          <table id="tabelaFornecedores">
+            <thead><tr>
+              <th>Fornecedor</th><th class="num">Produtos</th><th class="num">Qtd. total</th>
+              <th class="num">Total Compra</th><th class="num">Total Venda</th><th class="num">Lucro</th>
+            </tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="table-toolbar">
+          <h2 style="margin:0">Produtos</h2>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span class="muted small" id="contadorGerencial">0 produto(s)</span>
+            <button type="button" class="btn btn-accent btn-sm" id="btnNovoRegistro">+ Adicionar Produto</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table id="tabelaGerencial">
+            <thead><tr>
+              <th>Produto</th><th>Fornecedor</th><th>Marca</th><th>Categoria</th><th>Localização</th>
+              <th class="num">Qtd</th><th class="num">V. Compra</th><th class="num">V. Venda</th>
+              <th class="num">Tot. Compra</th><th class="num">Tot. Venda</th><th class="num">Lucro/Un</th>
+              <th class="num">Lucro Total</th><th class="num">Margem</th><th class="col-acoes">Ações</th>
+            </tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------------- DASHBOARD ---------------- -->
+    <section id="tela-dashboard" class="tela hidden">
+      <h1>Dashboard</h1>
+      <p class="lead">Indicadores em tempo real do estoque conferido.</p>
+
+      <div class="kpi-grid">
+        <div class="kpi-card"><div class="kpi-label">Produtos cadastrados</div><div class="kpi-value" id="kpiTotalProdutos">0</div></div>
+        <div class="kpi-card teal"><div class="kpi-label">Fornecedores</div><div class="kpi-value" id="kpiFornecedores">0</div></div>
+        <div class="kpi-card teal"><div class="kpi-label">Marcas</div><div class="kpi-value" id="kpiMarcas">0</div></div>
+        <div class="kpi-card"><div class="kpi-label">Quantidade em estoque</div><div class="kpi-value" id="kpiEstoque">0</div></div>
+
+        <div class="kpi-card kpi-financeiro"><div class="kpi-label">Valor investido</div><div class="kpi-value" id="kpiValorInvestido">—</div></div>
+        <div class="kpi-card kpi-financeiro"><div class="kpi-label">Valor estimado de venda</div><div class="kpi-value" id="kpiValorVenda">—</div></div>
+        <div class="kpi-card kpi-financeiro"><div class="kpi-label">Lucro estimado</div><div class="kpi-value" id="kpiLucro">—</div></div>
+        <div class="kpi-card kpi-financeiro"><div class="kpi-label">Margem média</div><div class="kpi-value" id="kpiMargem">—</div></div>
+        <div class="kpi-card kpi-financeiro"><div class="kpi-label">Preço médio</div><div class="kpi-value" id="kpiPrecoMedio">—</div></div>
+        <div class="kpi-card kpi-financeiro"><div class="kpi-label">Ticket médio</div><div class="kpi-value" id="kpiTicketMedio">—</div></div>
+        <div class="kpi-card kpi-financeiro danger"><div class="kpi-label">Sem preço cadastrado</div><div class="kpi-value" id="kpiSemPreco">0</div></div>
+        <div class="kpi-card kpi-financeiro danger"><div class="kpi-label">Estoque baixo</div><div class="kpi-value" id="kpiEstoqueBaixo">0</div></div>
+      </div>
+
+      <div class="dash-columns">
+        <div class="card">
+          <h2>🏆 Produtos mais lucrativos</h2>
+          <ul class="mini-list" id="listaMaisLucrativos"></ul>
+        </div>
+        <div class="card">
+          <h2>⚠️ Estoque baixo</h2>
+          <ul class="mini-list" id="listaEstoqueBaixo"></ul>
+        </div>
+        <div class="card">
+          <h2>🕓 Últimas conferências</h2>
+          <ul class="mini-list" id="listaUltimasConferencias"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------------- RELATÓRIOS ---------------- -->
+    <section id="tela-relatorios" class="tela hidden">
+      <h1>Relatórios</h1>
+      <p class="lead">Filtre e exporte os dados em PDF ou Excel.</p>
+
+      <div class="card">
+        <div class="relatorio-grid">
+          <div class="field"><label for="relDataIni">Data inicial</label><input type="date" id="relDataIni" /></div>
+          <div class="field"><label for="relDataFim">Data final</label><input type="date" id="relDataFim" /></div>
+          <div class="field"><label for="relFornecedor">Fornecedor</label><select id="relFornecedor"></select></div>
+          <div class="field"><label for="relMarca">Marca</label><select id="relMarca"></select></div>
+          <div class="field"><label for="relCategoria">Categoria</label><select id="relCategoria"></select></div>
+          <div class="field"><label for="relProduto">Produto (descrição)</label><input type="text" id="relProduto" placeholder="Buscar por nome…" /></div>
+        </div>
+        <div class="form-actions" style="justify-content:flex-start;">
+          <button class="btn btn-primary" id="btnGerarPDF">⬇ Gerar PDF</button>
+          <button class="btn btn-accent" id="btnGerarExcel">⬇ Gerar Excel</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------------- ÁREA PROTEGIDA (bloqueio genérico) ---------------- -->
+    <section id="tela-bloqueada" class="tela hidden">
+      <div class="card" style="max-width:420px; margin:40px auto;">
+        <h2>🔒 Área protegida por senha</h2>
+        <p class="muted small">Esta área é restrita. Digite a senha para continuar — ela libera todas as áreas de gestão de uma vez, exceto a Conferência.</p>
+        <form id="formSenhaArea">
+          <div class="field">
+            <label for="campoSenhaArea" class="visually-hidden">Senha da área</label>
+            <input id="campoSenhaArea" type="password" placeholder="Senha" autocomplete="off" required />
+          </div>
+          <div id="erroSenhaArea" class="login-error hidden" role="alert"></div>
+          <button type="submit" class="btn btn-primary btn-block">Desbloquear</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ---------------- USUÁRIOS ---------------- -->
+    <section id="tela-usuarios" class="tela hidden">
+      <h1>Usuários e Permissões</h1>
+      <p class="lead">Defina o nível de acesso de cada pessoa do time.</p>
+      <div class="card">
+        <div class="table-wrap">
+          <table id="tabelaUsuarios">
+            <thead><tr><th>Nome</th><th>E-mail</th><th>Papel</th><th>Status</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------------- AUDITORIA ---------------- -->
+    <section id="tela-auditoria" class="tela hidden">
+      <h1>Log de Auditoria</h1>
+      <p class="lead">Todas as criações, edições e exclusões de produtos, com data, hora e responsável.</p>
+      <div class="card">
+        <div class="table-wrap">
+          <table id="tabelaAuditoria">
+            <thead><tr><th>Quando</th><th>Usuário</th><th>Ação</th><th>Produto</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ============================== MODAL PRODUTO ============================== -->
+<div id="modalProduto" class="modal-overlay hidden">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitulo">
+    <div class="modal-header">
+      <h2 id="modalTitulo">Novo registro</h2>
+      <button class="icon-btn" style="background:transparent;color:var(--text)" id="btnFecharModal" aria-label="Fechar">✕</button>
+    </div>
+    <form id="formModalProduto">
+      <div class="modal-body">
+        <div class="section-tag">Conferência</div>
+        <div class="form-grid">
+          <div class="field"><label for="mCampoData">Data *</label><input id="mCampoData" name="data_conferencia" type="date" required /></div>
+          <div class="field"><label for="mCampoFornecedor">Fornecedor *</label><input id="mCampoFornecedor" name="fornecedor" type="text" required /></div>
+          <div class="field"><label for="mCampoMarca">Marca *</label><input id="mCampoMarca" name="marca" type="text" required /></div>
+          <div class="field" style="grid-column: span 2;"><label for="mCampoDescricao">Descrição *</label><input id="mCampoDescricao" name="descricao" type="text" required /></div>
+          <div class="field"><label for="mCampoQuantidade">Quantidade *</label><input id="mCampoQuantidade" name="quantidade" type="number" min="0" step="1" required /></div>
+          <div class="field" style="grid-column: 1 / -1;"><label for="mCampoObservacao">Observação</label><input id="mCampoObservacao" name="observacao" type="text" /></div>
+        </div>
+
+        <div class="section-tag campo-gerencial">Dados gerenciais</div>
+        <div class="form-grid campo-gerencial">
+          <div class="field campo-gerencial"><label for="mCampoValorCompra">Valor de compra (R$)</label><input id="mCampoValorCompra" name="valor_compra" type="number" min="0" step="0.01" /></div>
+          <div class="field campo-gerencial"><label for="mCampoValorVenda">Valor de venda (R$)</label><input id="mCampoValorVenda" name="valor_venda" type="number" min="0" step="0.01" /></div>
+          <div class="field campo-gerencial"><label for="mCampoEstoqueMinimo">Estoque mínimo</label><input id="mCampoEstoqueMinimo" name="estoque_minimo" type="number" min="0" step="1" /></div>
+          <div class="field campo-gerencial"><label for="mCampoCategoria">Categoria</label><input id="mCampoCategoria" name="categoria" type="text" /></div>
+          <div class="field campo-gerencial" style="grid-column: span 2;"><label for="mCampoLocalizacao">Localização no estoque</label><input id="mCampoLocalizacao" name="localizacao" type="text" /></div>
+          <div class="field campo-gerencial" style="grid-column: 1 / -1;"><label for="mCampoObsGerencial">Observações gerenciais</label><textarea id="mCampoObsGerencial" name="observacoes_gerencial"></textarea></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline" id="btnCancelarModal">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="./js/config.js"></script>
+<script src="./js/db.js"></script>
+<script src="./js/calc.js"></script>
+<script src="./js/app.js"></script>
+</body>
+</html>
