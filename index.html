@@ -1,0 +1,2739 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gestão Financeira / Cheque</title>
+  <meta name="description" content="Controle de cheques emitidos, contratos a juros com amortização e lembretes de vencimento." />
+  <meta name="theme-color" content="#0f172a" />
+  <link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjogIkdlc3TDo28gRmluYW5jZWlyYSAvIENoZXF1ZSIsICJzaG9ydF9uYW1lIjogIkNoZXF1ZXMiLCAiZGVzY3JpcHRpb24iOiAiQ29udHJvbGUgZGUgY2hlcXVlcyBlbWl0aWRvcywgY29udHJhdG9zIGEganVyb3MgY29tIGFtb3J0aXphw6fDo28gZSBsZW1icmV0ZXMgZGUgdmVuY2ltZW50by4iLCAic3RhcnRfdXJsIjogIi4vIiwgInNjb3BlIjogIi4vIiwgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsICJiYWNrZ3JvdW5kX2NvbG9yIjogIiMwZjE3MmEiLCAidGhlbWVfY29sb3IiOiAiIzBmMTcyYSIsICJvcmllbnRhdGlvbiI6ICJwb3J0cmFpdC1wcmltYXJ5IiwgImljb25zIjogW3sic3JjIjogImRhdGE6aW1hZ2UvcG5nO2Jhc2U2NCxpVkJPUncwS0dnb0FBQUFOU1VoRVVnQUFBTUFBQUFEQUNBWUFBQUJTM0d3SEFBQUVKVWxFUVZSNG5PM2RzVzBVUVJUSDRUVWlkd0RDSFJDNENUZEFSQTJJbUpBU0NJa1JOUkM1QWRxZ0JBc0NLakRSU1NmcmdQTjViOTZiL1g5ZmptNlplYitkWFNOekY1ZFgxL2NMaEhwV2ZRRlFTUUJFRXdEUkJFQTBBUkJOQUVRVEFORUVRRFFCRUUwQVJCTUEwUVJBTkFFUVRRQkVFd0RSQkVBMEFSQk5BRVFUQU5FRVFEUUJFRTBBUkJNQTBRUkFOQUVRVFFCRUV3RFJCRUEwQVJCTkFFUVRBTkVFUURRQkVFMEFSQk1BMFFSQU5BRVFUUUJFRXdEUkJFQTBBUkJOQUVRVEFORUVRRFFCRU8xNTlRV2MwNnMzMzZzdllUUHVibStxTCtFc0xpNnZydStyTDJJdEJuNmNyUVF4ZlFDR3Z0N01NVXdaZ0tIdmE3WVlwbnNKTnZ5OXpiWS8wNXdBc3kwc2M1d0dVNXdBaG45T00reGI2eE5naGdYa09GMVBnN1luZ09IZmxxNzcyVEtBcm92RjAzVGMxM1lCZEZ3azF0TnRmMXNGMEcxeE9JOU8rOXdtZ0U2THd2bDEyZThXQVhSWkRNYnFzTzh0QW9BcTVRRjB1QXRRcDNyL1N3T28vc3ZUUStVY2xKOEFVS2tzQUhkLzlsWE5RMGtBaHA5REt1YkNJeERSQkVDMDRRRjQvT0ZmUnMrSEU0Qm9BaURhMEFBOC9uQ01rWFBTK24rRysvSDFaZlVsc0pMWDczNVdYOEpCTFFNdytOdXoyOU51SVhnSElOcXdBSTU5cm5QMzM3Wmo5M2ZVZTRBVGdHZ0NJRnE3QUxxOUpMR3VidnZiTGdBWXFlV1BRWGQzQ1MvRTI5SHR6ci9UTW9DZHJvdkdkbmdFSXBvQWlDWUFvZ21BYUFJZ21nQ0lKZ0NpQ1lCb0FpQ2FBSWdtQUtJSmdHZ0NJSm9BaUNZQW9nbUFhQUlnV3R2ZkNQdnk4VVgxSmJUMi90T3ZrLzdjNVlkdksxL0o4WDUvZmx2MjJYL1Q4Z1F3L1A5M3locFZEbitIenora1hRQ0cvM2lQV2FzdXc5ZmxPbmJhQlFBakNZQm9BaUJhdXdCTy9lbEdvc2VzVlplZndIUzVqcDEyQVN5TENJNXh5aHBWRDEvMTV4OXljWGwxZlQvaWczdy9HSTkxZDN0ejlzOW9lUUxBS0FJZ21nQ0lKZ0NpQ1lCb0FpQ2FBSWdtQUtJSmdHakRBaGp4cjNwc3g2aDVjUUlRVFFCRUV3RFJoZ2JnUFlCampKd1RKd0RSQkVDMDRRRjRET0pmUnMrSEU0Qm9BaUJhU1FBZWd6aWtZaTdLVGdBUnNLOXFIandDRWEwMEFLY0F5MUk3QitVbmdBaXlWZTkvZVFCUXFVVUExWGNCYW5UWTl4WUJMRXVQeFdDY0x2dmRKb0JsNmJNb25GZW5mVzRWd0xMMFdoelcxMjEvMndXd0xQMFdpWFYwM05lV0FTeEx6OFhpZEYzM2M5ajNBenlGN3hhWVY5ZkIzMmw3QXV6cnZvZ2NOc08rVFhFQzdITWE5RGZENE85TWNRTHNtMmx4RTgyMlA5T2RBQTg1RWVyTk52VDdwZzlnbnhqR21Ybm85MjBxZ0ljRXNaNnREUHhEbXc0QS9tZTZsMkJZa3dDSUpnQ2lDWUJvQWlDYUFJZ21BS0lKZ0dnQ0lKb0FpQ1lBb2dtQWFBSWdtZ0NJSmdDaUNZQm9BaUNhQUlnbUFLSUpnR2dDSUpvQWlDWUFvZ21BYUFJZ21nQ0lKZ0NpQ1lCb0FpQ2FBSWdtQUtJSmdHZ0NJSm9BaUNZQW9nbUFhQUlnbWdDSUpnQ2lDWUJvQWlDYUFJZ21BS0lKZ0dnQ0lOb2ZWKy9CK2RPbm5Ja0FBQUFBU1VWT1JLNUNZSUk9IiwgInNpemVzIjogIjE5MngxOTIiLCAidHlwZSI6ICJpbWFnZS9wbmcifSwgeyJzcmMiOiAiZGF0YTppbWFnZS9wbmc7YmFzZTY0LGlWQk9SdzBLR2dvQUFBQU5TVWhFVWdBQUFnQUFBQUlBQ0FZQUFBRDBlTlQ2QUFBTXJFbEVRVlI0bk8zZHZhMGRheFdBNFczay9BUWd1d01DTitFR0hGRURJaWFrQkVKaVJBMUVic0J0VUlJRkFSV1l3THJvV2pvK1ovL016NXA1bjZlQzBXaSt0ZDR6WTJ1L2VYci80ZHNGQUVqNXpkNFhBQUJzVHdBQVFKQUFBSUFnQVFBQVFRSUFBSUlFQUFBRUNRQUFDQklBQUJBa0FBQWdTQUFBUUpBQUFJQWdBUUFBUVFJQUFJSUVBQUFFQ1FBQUNCSUFBQkFrQUFBZ1NBQUFRSkFBQUlBZ0FRQUFRUUlBQUlJRUFBQUVDUUFBQ0JJQUFCQWtBQUFnU0FBQVFKQUFBSUFnQVFBQVFRSUFBSUlFQUFBRUNRQUFDQklBQUJBa0FBQWdTQUFBUUpBQUFJQWdBUUFBUVFJQUFJSUVBQUFFQ1FBQUNCSUFBQkFrQUFBZ1NBQUFRSkFBQUlBZ0FRQUFRUUlBQUlJRUFBQUVDUUFBQ0JJQUFCQWtBQUFnU0FBQVFKQUFBSUFnQVFBQVFRSUFBSUlFQUFBRUNRQUFDQklBQUJBa0FBQWdTQUFBUUpBQUFJQWdBUUFBUVFJQUFJSUVBQUFFQ1FBQUNCSUFBQkFrQUFBZ1NBQUFRSkFBQUlBZ0FRQUFRUUlBQUlJRUFBQUVDUUFBQ0JJQUFCQWtBQUFnU0FBQVFKQUFBSUFnQVFBQVFRSUFBSUlFQUFBRUNRQUFDQklBQUJBa0FBQWdTQUFBUUpBQUFJQWdBUUFBUVFJQUFJSUVBQUFFQ1FBQUNCSUFBQkFrQUFBZ1NBQUFRSkFBQUlBZ0FRQUFRUUlBQUlJRUFBQUVDUUFBQ0JJQUFCQWtBQUFnU0FBQVFKQUFBSUFnQVFBQVFRSUFBSUlFQUFBRUNRQUFDQklBQUJBa0FBQWdTQUFBUUpBQUFJQWdBUUFBUVFJQUFJSUVBQUFFQ1FBQUNCSUFBQkFrQUFBZ1NBQUFRSkFBQUlBZ0FRQUFRUUlBQUlJRUFBQUVDUUFBQ0JJQUFCQWtBQUFnNk8zZUYwRER1MDlmOXI0RU9KU3Zuei91ZlFtYzNKdW45eCsrN1gwUm5JTWxEOXNRQnl4QkFIQVh5eDVtRVFYY1NnQndGUXNmamtVUThCb0J3RTlaK25BT1lvRG5DQUIrWU9uRHVZa0JmaUVBdUZ3dUZqL1VDQUVFUUppbEQxd3VZcUJLQUFSWi9NQnpoRUNMQUFpeCtJRnJDSUVHQVJCZzhRUDNFQUxuSmdCT3pPSUhsaUFFemtrQW5KREZENnhCQ0p5TFh3TThHY3NmV0l2NWNpN2VBSnlFZ3dsc3lkdUE0eE1BQjJmeEEzc1NBc2ZsRThDQldmN0Ezc3loNHhJQUIrWFFBVk9ZUjhma0U4REJPR2pBWkQ0SkhJYzNBQWRpK1FQVG1WUEhJUUFPd3FFQ2pzSzhPZ2FmQUlaemtJQWo4MGxnTG04QUJyUDhnYU16eCtZU0FFTTVOTUJabUdjekNZQ0JIQmJnYk15MWVRVEFNQTRKY0ZibTJ5d0NZQkNIQXpnN2MyNE9BVENFUXdGVW1IY3pDSUFCSEFhZ3h0emJud0RZbVVNQVZKbC8reElBTy9Md0EzWG00SDRFd0U0ODlBRGZtWWY3RUFBNzhMQUQvTWhjM0o0QTJKaUhIT0I1NXVPMkJBQUFCQW1BRGFsYmdKZVprOXNSQUJ2eFVBTmN4N3pjaGdEWWdJY1o0RGJtNXZvRUFBQUVDWUNWcVZpQSs1aWY2eElBSy9Md0FqekdIRjJQQUZpSmh4WmdHZWJwT2dRQUFBUUpnQldvVllCbG1hdkxFd0FBRUNRQUZxWlNBZFpodmk1TEFDekl3d213TG5OMk9RSUFBSUlFd0VKVUtjQTJ6TnRsQ0FBQUNCSUFDMUNqQU5zeWR4OG5BQUFnU0FBOFNJVUM3TVA4Zll3QUFJQWdBZkFBOVFtd0wzUDRmZ0lBQUlJRXdKMVVKOEFNNXZGOUJBQUFCQWtBQUFnU0FIZnd1Z2xnRm5QNWRnSUFBSUlFd0kxVUpzQk01dk50QkFBQUJBa0FBQWdTQURmd2VnbGdOblA2ZWdJQUFJSUVBQUFFQ1lBcmVhMEVjQXptOVhVRUFBQUVDUUFBQ0JJQUFCQWtBSzdnZXhMQXNaamJyM3U3OXdWd20zLzk0M2Q3WHdMQVQvMytqLy9lK3hLNGtnQTRBRXNmT0lwZnp5c3hNSnRQQU1OWi9zQlJtVit6Q1lEQkhCN2c2TXl4dVFUQUsvYjZoeVFPRFhBV2U4MHoveER3WlFKZ0lNc2ZPQnR6YlI0Qk1JeERBcHlWK1RhTEFBQ0FJQUVBQUVFQ1lCQ3Z4NEN6TStmbUVBQUFFQ1FBWHVDL2tBQWNtem4rY3dJQUFJSUVBQUFFQ1FBQUNCSUFnL2psTE9Ec3pMazVCQUFBQkFrQUFBZ1NBTU40UFFhY2xmazJpd0FZeUNFQnpzWmNtMGNBRE9Xd0FHZGhuczBrQUFaemFJQ2pNOGZtRWdERE9UekFVWmxmczczZCt3SjQzYThQa1YvU0FpYXo5STlEQUJ5TXd3WEFFbndDQUlBZ0FRQUFRUUlBQUlJRUFBQUVDUUFBQ0JJQUFCQWtBQUFnU0FBQVFKQUFBSUFnQVFBQVFRSUFBSUlFQUFBRUNRQUFDQklBQUJBa0FBQWdTQUFBUUpBQUFJQWdBUUFBUVFJQUFJSUVBQUFFQ1FBQUNCSUFBQkFrQUFBZ1NBQUFRSkFBQUlBZ0FRQUFRUUlBQUlJRUFBQUVDUUFBQ0JJQUFCQWtBQUFnU0FBQVFKQUFBSUFnQVFBQVFRSUFBSUlFQUFBRUNRQUFDQklBQUJBa0FBQWdTQUFBUUpBQUFJQWdBUUFBUVFJQUFJSUVBQUFFQ1FBQUNCSUFBQkFrQUFBZzZPM2VGOEIxL3Y2WDMrNTlDYkNhUC8zMVAzdGZ3azJlL3Z6UHZTOWh2UC8rN1E5N1h3S3ZlUFAwL3NPM3ZTOWlxbmVmdnV4OUNSWS9LZE5Ed09LLzNZUVErUHI1NDk2WE1KSlBBSU5aL3RSTWZ1WXQvL3U0YjNNSmdLRW1EMEpZMDhSbjN4SjdqUHMza3dBWWFPSUFoQzFOT2dPVzF6TGN4M2tFd0RDVEJoL3NhY0pac0xTVzVYN09JZ0FBSUVnQURETGhMeDZZWk04ejRhL1ZkYml2Y3dnQUFBZ1NBQUFRSkFBQUlFZ0FBRUNRQUFDQUlBRUFBRUVDWUpEcFA0UUNXOXZ6VEV6NEVac3pjbC9uRUFBQUVDUUFodkVXQUw2YmNCYjh0Ym9zOTNNV0FURFFoTUVIZTVwMEJpeXRaYmlQOHdpQW9TWU5RTmpTeEdmZjhucU0remVUQUJoczRpQ0VOVTErNWkyeCs3aHZjNzE1ZXYvaDI5NFhNZFc3VDEvMnZvVC84ME5Cbk5ua3hmOGNQMmp6dWttTC8rdm5qM3Rmd2tnQzRBV1RBZ0NBK3dpQTUva0VBQUJCQWdBQWdnUUFBQVFKQUFBSUVnQUFFQ1FBQUNCSUFBQkFrQUFBZ0NBQkFBQkJBZ0FBZ2dRQUFBUUpBQUFJRWdBQUVDUUFBQ0JJQUFCQWtBQUFnQ0FCQUFCQkFnQUFnZ1FBQUFRSmdCZDgvZnh4NzBzQTRBSG0rTThKQUFBSUVnQUFFQ1FBQUNCSUFBQkFrQUFBZ0NBQkFBQkJBdUFWL2dzSndER1ozeThUQUFBUUpBQUFJRWdBQUVDUUFBQ0FJQUZ3QmYrUUJPQll6TzNYQ1FBQUNCSUFBQkFrQUFBZ1NBQmN5ZmNrZ0dNd3I2OGpBQUFnU0FBQVFKQUF1SUhYU2dDem1kUFhFd0FBRUNRQUFDQklBTnpJNnlXQW1jem4yd2dBQUFnU0FIZFFtUUN6bU11M0V3QUFFQ1FBQUNCSUFOeko2eWFBR2N6ait3Z0FBQWdTQUE5UW5RRDdNb2Z2SndBQUlFZ0FQRWg5QXV6RC9IMk1BQUNBSUFHd0FCVUtzQzF6OTNFQ0FBQ0NCTUJDMUNqQU5zemJaUWdBQUFnU0FBdFNwUURyTW1lWEl3QVc1dUVFV0lmNXVpd0JBQUJCQW1BRktoVmdXZWJxOGdRQUFBUUpnSldvVllCbG1LZnJFQUFyOHRBQ1BNWWNYWThBV0ptSEYrQSs1dWU2QkFBQUJBbUFEYWhZZ051WW0rc1RBQnZ4TUFOY3g3emNoZ0RZa0ljYTRHWG01SFlFQUFBRUNZQ05xVnVBNTVtUDJ4SUFPL0NRQS96SVhOeWVBTmlKaHgzZ08vTndId0pnUng1Nm9NNGMzSThBMkptSEg2Z3kvL1lsQUFad0NJQWFjMjkvQW1BSWh3R29NTzltRUFDRE9CVEEyWmx6Y3dpQVlSd080S3pNdDFrRXdFQU9DWEEyNXRvOEFtQW9od1U0Qy9Oc0pnRXdtRU1ESEowNU50ZWJwL2NmdnUxOUVienUzYWN2ZTE4Q3dOVXMvdm04QVRnSWh3azRDdlBxR0FUQWdUaFV3SFRtMUhINEJIQlFQZ2tBazFqOHgrTU53RUU1Yk1BVTV0RXhDWUFEYytpQXZabER4K1VUd0VuNEpBQnN5ZUkvUGdGd01rSUFXSlBGZng0K0FaeU13d21zeFh3NUYyOEFUc3piQUdBSkZ2ODVDWUFBSVFEY3crSS9Od0VRSWdTQWExajhEUUlnU0FnQXo3SDRXd1JBbUJBQUxoZUx2MG9BY0xsY3hBRFVXUG9JQUg0Z0JPRGNMSDUrSVFENEtURUE1MkRwOHh3QndGWEVBQnlMcGM5ckJBQjNFUVF3aTRYUHJRUUFpeEVGc0EzTG5pVUlBRFloRHVBMmxqeHJFd0FBRU9UWEFBRWdTQUFBUUpBQUFJQWdBUUFBUVFJQUFJSUVBQUFFQ1FBQUNCSUFBQkFrQUFBZ1NBQUFRSkFBQUlBZ0FRQUFRUUlBQUlJRUFBQUVDUUFBQ0JJQUFCQWtBQUFnU0FBQVFKQUFBSUFnQVFBQVFRSUFBSUlFQUFBRUNRQUFDQklBQUJBa0FBQWdTQUFBUUpBQUFJQWdBUUFBUVFJQUFJSUVBQUFFQ1FBQUNCSUFBQkFrQUFBZ1NBQUFRSkFBQUlBZ0FRQUFRUUlBQUlJRUFBQUVDUUFBQ0JJQUFCQWtBQUFnU0FBQVFKQUFBSUFnQVFBQVFRSUFBSUlFQUFBRUNRQUFDQklBQUJBa0FBQWdTQUFBUUpBQUFJQWdBUUFBUVFJQUFJSUVBQUFFQ1FBQUNCSUFBQkFrQUFBZ1NBQUFRSkFBQUlBZ0FRQUFRUUlBQUlJRUFBQUVDUUFBQ0JJQUFCQWtBQUFnU0FBQVFKQUFBSUFnQVFBQVFRSUFBSUlFQUFBRUNRQUFDQklBQUJBa0FBQWdTQUFBUUpBQUFJQWdBUUFBUVFJQUFJSUVBQUFFQ1FBQUNCSUFBQkFrQUFBZ1NBQUFRSkFBQUlBZ0FRQUFRUUlBQUlJRUFBQUVDUUFBQ0JJQUFCQWtBQUFnU0FBQVFKQUFBSUFnQVFBQVFRSUFBSUlFQUFBRUNRQUFDQklBQUJBa0FBQWdTQUFBUUpBQUFJQWdBUUFBUVFJQUFJSUVBQUFFQ1FBQUNCSUFBQkFrQUFBZ1NBQUFRSkFBQUlBZ0FRQUFRUUlBQUlJRUFBQUVDUUFBQ0JJQUFCQWtBQUFnU0FBQVFKQUFBSUFnQVFBQVFRSUFBSUlFQUFBRUNRQUFDQklBQUJBa0FBQWc2SCtwY0FQbktRVkVxQUFBQUFCSlJVNUVya0pnZ2c9PSIsICJzaXplcyI6ICI1MTJ4NTEyIiwgInR5cGUiOiAiaW1hZ2UvcG5nIn0sIHsic3JjIjogImRhdGE6aW1hZ2UvcG5nO2Jhc2U2NCxpVkJPUncwS0dnb0FBQUFOU1VoRVVnQUFBZ0FBQUFJQUNBWUFBQUQwZU5UNkFBQU0zMGxFUVZSNG5PM2RNWEljV3hXQTRUSGwzQUdVdlFNQ2I4SWJjTVFhS0dKQ2xrQklUTEVHSW0vQTIyQUpMZ2hZZ1lsRXliSmtTVDNkMC9mZS8vdnlWOVdCemptL2U1NDBiOTU5K1BqOUFnQ2svT2JzQndBQWJrOEFBRUNRQUFDQUlBRUFBRUVDQUFDQ0JBQUFCQWtBQUFnU0FBQVFKQUFBSUVnQUFFQ1FBQUNBSUFFQUFFRUNBQUNDQkFBQUJBa0FBQWdTQUFBUUpBQUFJRWdBQUVDUUFBQ0FJQUVBQUVFQ0FBQ0NCQUFBQkFrQUFBZ1NBQUFRSkFBQUlFZ0FBRUNRQUFDQUlBRUFBRUVDQUFDQ0JBQUFCQWtBQUFnU0FBQVFKQUFBSUVnQUFFQ1FBQUNBSUFFQUFFRUNBQUNDQkFBQUJBa0FBQWdTQUFBUUpBQUFJRWdBQUVDUUFBQ0FJQUVBQUVFQ0FBQ0NCQUFBQkFrQUFBZ1NBQUFRSkFBQUlFZ0FBRUNRQUFDQUlBRUFBRUVDQUFDQ0JBQUFCQWtBQUFnU0FBQVFKQUFBSUVnQUFFQ1FBQUNBSUFFQUFFRUNBQUNDQkFBQUJBa0FBQWdTQUFBUUpBQUFJRWdBQUVDUUFBQ0FJQUVBQUVFQ0FBQ0NCQUFBQkFrQUFBZ1NBQUFRSkFBQUlFZ0FBRUNRQUFDQUlBRUFBRUVDQUFDQ0JBQUFCQWtBQUFnU0FBQVFKQUFBSUVnQUFFQ1FBQUNBSUFFQUFFRUNBQUNDQkFBQUJBa0FBQWdTQUFBUUpBQUFJRWdBQUVDUUFBQ0FJQUVBQUVFQ0FBQ0NCQUFBQkFrQUFBZ1NBQUFRSkFBQUlFZ0FBRUNRQUFDQUlBRUFBRUVDQUFDQ0JBQUFCQWtBQUFnU0FBQVFKQUFBSUVnQUFFQ1FBQUNBSUFFQUFFRUNBQUNDQkFBQUJBa0FBQWdTQUFBUUpBQUFJRWdBQUVDUUFBQ0FJQUVBQUVFQ0FBQ0NCQUFBQkFrQUFBZ1NBQUFRSkFBQUlPanQyUThBUjN2LytldlpqOENrdm4zNWRQWWp3R0hldlB2dzhmdlpEd0hYY3VTNU5YSEE3QVFBMDNIc0daVW9ZQ1lDZ09FNStNeEtFREF5QWNDUUhIMVdJd1lZalFCZ0dJNCtGV0tBRVFnQVR1ZndVeVVFT0pNQTRCU09QdnhJREhCckFvQ2JjdmpoMTRRQXR5SUF1QW1ISDE1SENIQTBBY0NoSEg2NGpoRGdLQUtBUXpqOHNDOGh3TjRFQUx0eStPRllRb0M5K0RaQWR1UDR3L0hNR1h2eEJvQ3JXVWh3RG04RHVJWUFZRE9ISDhZZ0JOakNSd0JzNHZqRE9Nd2pXd2dBWHMyeWdmR1lTMTdMUndDOG1BVURjL0NSQUMvaERRQXY0dmpEUE13ckx5RUFlSlpsQXZNeHR6ekhSd0E4eVFLQk5maElnTWQ0QThDakhIOVloM25tTVFLQW4xZ1dzQjV6elVNQ2dCOVlFckF1ODgxOUFvRC9zeHhnZmVhY093S0F5K1ZpS1VDSmVlZHlFUUJjTEFNb012Y0lnRGhMQUxyTWY1c0FDRFA4Z0QzUUpRQ2lERDF3eHo1b0VnQkJoaDE0eUY3b0VRQXhoaHg0aXYzUUlnQkNERGZ3SEh1aVF3QUFRSkFBaUZEMXdFdlpGdzBDSU1Bd0E2OWxiNnhQQUN6T0VBTmIyUjlyRXdBQUVDUUFGcWJlZ1d2Wkkrc1NBSXN5dE1CZTdKTTFDWUFGR1ZaZ2IvYktlZ1FBQUFRSmdNV29kT0FvOXN0YUJBQUFCQW1BaGFoejRHajJ6RG9Fd0NJTUpYQXI5czBhQkFBQUJBbUFCYWh4NE5ic25ma0pBQUFJRWdDVFUrSEFXZXlmdVFrQUFBZ1NBQk5UMzhEWjdLRjVDUUFBQ0JJQWsxTGR3Q2pzb3prSkFBQUlFZ0FUVXR2QWFPeWwrUWdBQUFnU0FBQVFKQUFtNHpVYk1DcjdhUzRDQUFDQ0JNQkUxRFV3T250cUhnSUFBSUlFQUFBRUNZQkplSzBHek1LK21vTUFBSUFnQVFBQVFRSmdBbDZuQWJPeHQ4WW5BQUFnU0FBQVFKQUFBSUFnQVRBNG42TUJzN0sveHZiMjdBZGdYZi82eCsvT2ZnUll3dS8vK08rekg0RUZDUUIyNWVqRC91N1BsUmhnTHo0Q1lEZU9QeHpQbkxFWEFjQXVMQ1c0SGZQR0hnVEF3R2I1SDJnc0k3aTlXZVp1bGoxV0pBQzR5aXhMQ0Zaay9yaUdBR0F6eXdmT1p3N1pTZ0FBUUpBQUFJQWdBY0FtWGp2Q09Nd2pXd2dBQUFnU0FJUHlxelBBS3V5ek1Ra0FBQWdTQUFBUUpBQUFJRWdBc0lsdkpJTnhtRWUyRUFBQUVDUUFBQ0JJQUxDWjE0NXdQblBJVmdLQXExZytjQjd6eHpVRUFGZXpoT0QyekIzWEVnRHN3aktDMnpGdjdFRUFzQnRMQ1k1bnp0akwyN01mZ0xYY1gwNitvUXoyNGVoekJBSEFZU3d0Z0hINUNBQUFnZ1FBQUFRSkFBQUlFZ0FBRUNRQUFDQklBQUJBa0FBQWdDQUJBQUJCQWdBQWdnUUFBQVFKQUFBSUVnQUFFQ1FBQUNCSUFBQkFrQUFBZ0NBQkFBQkJBZ0FBZ2dRQUFBUUpBQUFJRWdBQUVDUUFBQ0JJQUFCQWtBQUFnQ0FCQUFCQkFnQUFnZ1FBQUFRSkFBQUlFZ0FBRUNRQUFDQklBQUJBa0FBQWdDQUJBQUJCQWdBQWdnUUFBQVFKQUFBSUVnQUFFQ1FBQUNCSUFBQkFrQUFBZ0NBQkFBQkJBZ0FBZ2dRQUFBUUpBQUFJRWdBQUVDUUFBQ0JJQUFCQWtBQUFnS0MzWno4QTYvbjdYMzU3OWlNd21ULzk5VDluUDhLdTN2MzVuNXYrdS8vKzdRODdQd2s4N2MyN0R4Ky9uLzBRL096OTU2OW5QOEtyT2Z4Y2E5WVEySHJ3bjdOU0VIejc4dW5zUitBQkFUQ28yUUxBOFdjdnMwVEFVVWYvS2JQSGdBQVlqd0FZMUV3QjRQaXp0NUVqNE5hSC82RlpRMEFBakVjQURHcVdBSEQ4T2Nwb0VYRDI0WDlvdGhBUUFPUHhXd0JzNXZoenBKRit2a1k3L3BmTG1NL0VYQVFBd0MrTWZHaEhmamJHSndEWVpLUi9uYkd1czMvT1pqaXdNendqWXhJQUFJK1k2YkRPOUt5TVF3QUFRSkFBQUlBZ0FRQUFRUUlBQUlJRUFNQWpadnBET3pNOUsrTVFBR3d5Mmw5cFkwMW4vNXpOY0ZobmVFYkdKQUFBZm1Ia0F6dnlzekUrQWNCbVovL3JqTFdOOVBNMTRxRWQ4Wm1ZaXk4REd0UXNYd1owdVp6LzE5cFl6MGpILzZHei8rak9ySWZmbHdHTlJ3QU1hcVlBdUZ4RUFQc1orZmpmZCtzUW1QWHczeEVBNHhFQWc1b3RBQzRYRWNEMVpqbitEeDBWQTdNZi9mc0V3SGdFd0tCbURJQTdRb0RYbXZYd1AyVnJFS3gwOEI4U0FPTVJBSU9hT1FBQUhoSUE0L0ZiQUFBUUpBQUFJRWdBQUVDUUFBQ0FJQUVBQUVFQ0FBQ0NCQUFBQkFrQUFBZ1NBQUFRSkFBQUlFZ0FBRUNRQUFDQUlBRUFBRUVDQUFDQ0JBQUFCQWtBQUFnU0FBQVFKQUFBSUVnQUFFQ1FBQmpVdHkrZnpuNEVnRjNZWjJNU0FBQVFKQUFBSUVnQUFFQ1FBQUNBSUFFQUFFRUNBQUNDQk1EQS9Pb01NRHQ3YkZ3Q0FBQ0NCQUFBQkFrQUFBZ1NBQUFRSkFBRzUzK2dBV1psZjQxTkFBQkFrQUFBZ0NBQkFBQkJBbUFDUGtjRFptTnZqVThBQUVDUUFBQ0FJQUV3Q2EvVGdGbllWM01RQUFBUUpBQUFJRWdBVE1Sck5XQjA5dFE4QkFBQUJBbUF5YWhyWUZUMjAxd0VBQUFFQ1FBQUNCSUFFL0thRFJpTnZUUWZBUUFBUVFKZ1Vtb2JHSVY5TkNjQkFBQkJBbUJpcWhzNG16MDBMd0VBQUVFQ1lITHFHemlML1RNM0FRQUFRUUpnQVNvY3VEVjdaMzRDQUFDQ0JNQWkxRGh3Sy9iTkdnVEFRZ3dsY0RSN1poMENBQUNDQk1CaTFEbHdGUHRsTFFJQUFJSUV3SUpVT3JBM2UyVTlBbUJSaGhYWWkzMnlKZ0d3TUVNTFhNc2VXWmNBQUlBZ0FiQTQ5UTVzWlgrc1RRQUVHR0xndGV5TjlRbUFDTU1NdkpSOTBTQUFBQ0JJQUlTb2V1QTU5a1NIQUlneDNNQlQ3SWNXQVJCa3lJR0g3SVVlQVJCbDJJRTc5a0dUQUFnejlJQTkwQ1VBNGd3L2RKbi9OZ0dBSlFCQjVoNEJ3T1Z5c1F5Z3hMeHp1UWdBN3JFVVlIM21uRHNDZ0I5WURyQXU4ODE5QW9DZldCS3dIblBOUXdLQVIxa1dzQTd6ekdQZXZQdnc4ZnZaRDhIWTNuLytldllqQUJzNC9QeUtOd0E4eXhLQitaaGJuaU1BZUJITEJPWmhYbmtKSHdId2FqNFNnREU1L0x5R053QzhtaVVENHpHWHZKWUFZQlBMQnNaaEh0bkNSd0JjelVjQ2NBNkhuMnNJQUhZakJPQTJISDcyNENNQWRtTXB3ZkhNR1h2eEJvQkRlQnNBKzNMNDJac0E0RkJDQUs3ajhITVVBY0JOQ0FGNEhZZWZvd2tBYmtvSXdLODUvTnlLQU9BVVFnQis1UEJ6YXdLQTA0a0JxaHg5emlRQUdJWVFvTUxoWndRQ2dDR0pBVmJqNkRNYUFjRHd4QUN6Y3ZRWm1RQmdPb0tBVVRuNHpFUUFzQVJSd0swNTlzeE9BTEE4Y2NCV2pqd3JFd0FBRU9UYkFBRWdTQUFBUUpBQUFJQWdBUUFBUVFJQUFJSUVBQUFFQ1FBQUNCSUFBQkFrQUFBZ1NBQUFRSkFBQUlBZ0FRQUFRUUlBQUlJRUFBQUVDUUFBQ0JJQUFCQWtBQUFnU0FBQVFKQUFBSUFnQVFBQVFRSUFBSUlFQUFBRUNRQUFDQklBQUJBa0FBQWdTQUFBUUpBQUFJQWdBUUFBUVFJQUFJSUVBQUFFQ1FBQUNCSUFBQkFrQUFBZ1NBQUFRSkFBQUlBZ0FRQUFRUUlBQUlJRUFBQUVDUUFBQ0JJQUFCQWtBQUFnU0FBQVFKQUFBSUFnQVFBQVFRSUFBSUlFQUFBRUNRQUFDQklBQUJBa0FBQWdTQUFBUUpBQUFJQWdBUUFBUVFJQUFJSUVBQUFFQ1FBQUNCSUFBQkFrQUFBZ1NBQUFRSkFBQUlBZ0FRQUFRUUlBQUlJRUFBQUVDUUFBQ0JJQUFCQWtBQUFnU0FBQVFKQUFBSUFnQVFBQVFRSUFBSUlFQUFBRUNRQUFDQklBQUJBa0FBQWdTQUFBUUpBQUFJQWdBUUFBUVFJQUFJSUVBQUFFQ1FBQUNCSUFBQkFrQUFBZ1NBQUFRSkFBQUlBZ0FRQUFRUUlBQUlJRUFBQUVDUUFBQ0JJQUFCQWtBQUFnU0FBQVFKQUFBSUFnQVFBQVFRSUFBSUlFQUFBRUNRQUFDQklBQUJBa0FBQWdTQUFBUUpBQUFJQWdBUUFBUVFJQUFJSUVBQUFFQ1FBQUNCSUFBQkFrQUFBZ1NBQUFRSkFBQUlBZ0FRQUFRUUlBQUlJRUFBQUVDUUFBQ0JJQUFCQWtBQUFnU0FBQVFKQUFBSUFnQVFBQVFRSUFBSUlFQUFBRUNRQUFDQklBQUJBa0FBQWc2SCt5T1NtN2x1UEpkUUFBQUFCSlJVNUVya0pnZ2c9PSIsICJzaXplcyI6ICI1MTJ4NTEyIiwgInR5cGUiOiAiaW1hZ2UvcG5nIiwgInB1cnBvc2UiOiAibWFza2FibGUifV19" />
+  <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAABIElEQVR4nO2YvQ3CMBCFHUSfAgQbULAEC1AxA6KmZARKasQMVCzAGoyAoGACUlkiFva9KD/Ptu7rUJzc+/DZilOU8+XXJMyIHaAtKsBGBdioABsVYJO8wLjpDbP1vY8cNZ63FTy2QN+FhgjugohALcQIj9YVBVjh0fpBAXZ4SyhH8ruQVyCWf9/iywNto4/LtNMwTVhsX8HrYgsxwyP1810DqSAKSD3YN1J9aBGzJUJAAufDpJNiu+O79rvcX8V7PqdN8LrYQl2Fd5+FhEfG5b+IY0cUcPu2Db/PknobHec90MT2LmTM/wNOvi3U5Fw6BL48+c6AMfHMQiiHOANsCak+1EIsCaQu/F3IkuyHrVjJexdKARVgowJsVICNCrCpANm3R2UJH83RAAAAAElFTkSuQmCC" />
+  <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAD3klEQVR4nO3dPW4kVRiF4WtE7gDE7IBgNjEbIGINiJiQJRASI9ZANBtgGyxhBAErGKISrfmR3d3le0+dep7c7vL9Xn+qLlnth8dXr98PKPHF6guAPQmaKoKmiqCpImiqCJoqgqaKoKkiaKoImiqCpoqgqSJoqgiaKoKmiqCpImiqCJoqgqaKoKkiaKoImiqCpoqgqSJoqgiaKoKmiqCpImiqCJoqgqaKoKkiaKoImiqCpoqgqSJoqgiaKoKmiqCpImiqCJoqX66+gL19892fqy/hcN69fbP6EnbzcPT/9S3g/R058EMGLeJ5jhb3oYIW8jpHCfsQQQs5R3rY8U85xJwlfR6xGzr94Mjc1pEbWszHkDinuKATD4nPS5tXVNBph8PzJM0tJuikQ+F6KfOLCDrlMLhPwhyXB51wCOxn9TyXBr36h+dlrJzr8g0Ne1oWtO3cbdV8lwQt5nNYMWe3HFSZHrTtfC6z521DU2Vq0LbzOc2cuw1NFUFTZVrQbjfObdb8bWiqxH7QzF+/f736EnjCtz/8vfoSPhIXtJCPY5tVUthTbjncPzPGnA6i7qFt52NKmltU0HAvQVMlKuikNxc8X9LcooKGe8U9ttt+25PeaPBpSZt5Exf0JvGwyOeWgyqCpoqgqSJoqgiaKoKmiqCpImiqCJoqgqaKoKkiaKoImiqCpoqgqRL599C//fzV6kuI8OMv/9z0dY8//bHzlXzev79+P+21niNuQ4v5f7ecxcyYV7zeU6KCFvPHrjmTVXElRR0VNNxL0FQRNFWigr71XX2za85k1ROHpCcdUUGPIepLt5zF7LiSYh5jjIfHV6/fv/SL+DhdNu/evnnR7x+3oeEegqaKoKkiaKoImiqCpoqgqSJoqkwJ+qUfpnMMMzqwoakiaKoImirTgnYffW6z5m9DU0XQVJkatNuOc5o5dxuaKtODtqXPZfa8bWiqLAnalj6HFXNetqFF3W3VfN1yUGVp0LZ0p5VzXb6hRd1l9TyXBz3G+kNgHwlzjAh6jIzD4HYp84sJeoycQ+E6SXOLCnqMrMPhaWnzigt6jLxD4tMS5zTl00fv4ZNL8ySGvInc0JeSD++M0ucRv6Ev2dbrpIe8OVTQG2HPc5SQN4cM+pK493e0iC8dPugPCfx6Rw74Q3VBc27xTzngGoKmiqCpImiqCJoqgqaKoKkiaKoImiqCpoqgqSJoqgiaKoKmiqCpImiqCJoqgqaKoKkiaKoImiqCpoqgqSJoqgiaKoKmiqCpImiqCJoqgqaKoKkiaKoImiqCpoqgqSJoqgiaKoKmiqCpImiqCJoqgqbKf1ISu+E8nVRcAAAAAElFTkSuQmCC" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="Cheques" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            navy: {
+              800: '#1e293b',
+              900: '#0f172a',
+              950: '#090d16',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8fafc;
+      color: #0f172a;
+      -webkit-tap-highlight-color: transparent;
+    }
+    /* Custom scrollbar suave */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+    .tab-active {
+      border-bottom: 3px solid #2563eb;
+      color: #1d4ed8;
+      font-weight: 700;
+    }
+    @keyframes pulse-border {
+      0%, 100% { border-color: rgba(239, 68, 68, 0.4); }
+      50% { border-color: rgba(239, 68, 68, 1); }
+    }
+    .urgent-pulse {
+      animation: pulse-border 2s infinite;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col overflow-x-clip max-w-full">
+
+  <!-- Cabeçalho Principal -->
+  <header class="bg-slate-900 text-white shadow-lg sticky top-0 z-30">
+    <div class="max-w-7xl w-full min-w-0 mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-3 min-w-0">
+        <div class="bg-blue-600 p-2.5 rounded-xl shadow-inner flex items-center justify-center">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+          </svg>
+        </div>
+        <div>
+          <h1 class="text-lg sm:text-xl font-extrabold tracking-tight leading-tight">Gestão Financeira / Cheque</h1>
+          <p class="text-xs text-slate-300 hidden sm:block">Controle de folhas, fornecedores, juros e amortizações</p>
+        </div>
+      </div>
+
+      <!-- Ações Rápidas do Topo (Backup / Notificações) -->
+      <div class="flex items-center gap-2 flex-wrap min-w-0 max-w-full">
+        <button onclick="clearExampleData()" title="Remover dados de demonstração e começar do zero" class="flex items-center gap-1.5 bg-rose-900/60 hover:bg-rose-800 text-rose-100 text-xs font-medium px-3 py-2 rounded-lg border border-rose-700/70 transition">
+          <svg class="w-4 h-4 text-rose-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+          </svg>
+          <span>Limpar Exemplos</span>
+        </button>
+
+        <button onclick="requestBrowserNotification()" id="btnNotif" title="Ativar notificações no dispositivo" class="flex items-center gap-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium px-3 py-2 rounded-lg border border-slate-700 transition">
+          <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+          </svg>
+          <span id="notifLabel" class="hidden md:inline">Ativar Alertas</span>
+        </button>
+
+        <button onclick="installApp()" id="btnInstall" title="Instalar como aplicativo" class="hidden items-center gap-1.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold px-3 py-2 rounded-lg border border-blue-400 transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
+          <span>Instalar App</span>
+        </button>
+        <button onclick="exportBackup()" title="Baixar cópia de segurança (JSON)" class="flex items-center gap-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium px-3 py-2 rounded-lg border border-slate-700 transition">
+          <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+          </svg>
+          <span>Backup</span>
+        </button>
+
+        <label title="Restaurar arquivo de backup (JSON)" class="cursor-pointer flex items-center gap-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium px-3 py-2 rounded-lg border border-slate-700 transition">
+          <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+          </svg>
+          <span>Restaurar</span>
+          <input type="file" id="importFile" accept=".json" class="hidden" onchange="importBackup(event)" />
+        </label>
+      </div>
+    </div>
+  </header>
+
+  <!-- Conteúdo Principal -->
+  <main class="flex-1 max-w-7xl w-full min-w-0 mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+
+    <!-- 1. PAINEL DE ALERTAS E LEMBRETES ANTECIPADOS -->
+    <section id="alertsSection" class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden min-w-0 max-w-full">
+      <div class="bg-slate-50 px-4 sm:px-6 py-3.5 border-b border-slate-200 flex flex-wrap items-center justify-between gap-3">
+        <div class="flex items-center gap-2.5">
+          <span class="flex h-3 w-3 relative">
+            <span id="alertPing" class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+            <span id="alertDot" class="relative inline-flex rounded-full h-3 w-3 bg-amber-500"></span>
+          </span>
+          <h2 class="font-bold text-slate-800 text-sm sm:text-base">Central de Lembretes Antecipados</h2>
+        </div>
+
+        <div class="flex items-center gap-2 flex-wrap min-w-0 max-w-full">
+          <label for="advanceDaysSelect" class="text-xs font-medium text-slate-600">Avisar com antecedência de:</label>
+          <select id="advanceDaysSelect" onchange="updateAdvanceDays(this.value)" class="text-xs font-semibold bg-white border border-slate-300 rounded-lg px-2.5 py-1.5 text-slate-800 focus:ring-2 focus:ring-blue-500 outline-none">
+            <option value="3">3 dias</option>
+            <option value="5" selected>5 dias</option>
+            <option value="7">7 dias</option>
+            <option value="10">10 dias</option>
+            <option value="15">15 dias</option>
+            <option value="30">30 dias</option>
+          </select>
+
+          <button onclick="sendWhatsAppReminder()" class="flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold px-3.5 py-1.5 rounded-lg shadow-sm transition">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/>
+            </svg>
+            <span>Enviar Lembrete WhatsApp</span>
+          </button>
+
+          <button onclick="copyReminderText()" title="Copiar resumo para área de transferência" class="flex items-center gap-1 bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-semibold px-2.5 py-1.5 rounded-lg transition">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+            </svg>
+            <span class="hidden sm:inline">Copiar</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Cards de Alertas Dinâmicos -->
+      <div id="alertsContainer" class="p-4 sm:p-5 grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- Preenchido via JS -->
+      </div>
+    </section>
+
+    <!-- 2. DASHBOARD / KPIs CONSOLIDADOS -->
+    <section class="space-y-3">
+      <div class="flex flex-wrap items-center justify-between gap-2">
+        <h2 class="text-sm font-bold uppercase tracking-wider text-slate-500">Resumo Financeiro Geral</h2>
+        <div class="flex items-center gap-2 flex-wrap">
+          <select id="dashBankFilter" onchange="renderAll()" class="min-w-0 max-w-full text-xs bg-white border border-slate-300 rounded-lg px-3 py-1.5 text-slate-700 font-medium outline-none focus:ring-2 focus:ring-blue-500">
+            <option value="ALL">Todos os Bancos</option>
+          </select>
+          <input type="month" id="dashMonthFilter" onchange="renderAll()" class="min-w-0 max-w-full text-xs bg-white border border-slate-300 rounded-lg px-3 py-1.5 text-slate-700 font-medium outline-none focus:ring-2 focus:ring-blue-500" />
+          <button onclick="clearDashFilters()" id="btnClearDash" class="hidden text-xs text-blue-600 hover:underline font-medium">Limpar filtros</button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <!-- KPI 1 -->
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-semibold text-slate-500 uppercase">Cheques Em Aberto</span>
+            <span class="p-2 bg-blue-50 text-blue-600 rounded-lg">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            </span>
+          </div>
+          <p id="kpiOpenTotal" class="text-2xl font-extrabold text-slate-900 mt-2">R$ 0,00</p>
+          <p id="kpiOpenCount" class="text-xs text-slate-500 mt-1">0 folhas a compensar</p>
+        </div>
+
+        <!-- KPI 2 -->
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-semibold text-slate-500 uppercase">Vence em 7 / 30 Dias</span>
+            <span class="p-2 bg-amber-50 text-amber-600 rounded-lg">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            </span>
+          </div>
+          <p id="kpiNext7" class="text-2xl font-extrabold text-amber-600 mt-2">R$ 0,00</p>
+          <p id="kpiNext30" class="text-xs text-slate-500 mt-1">Próximos 30 dias: R$ 0,00</p>
+        </div>
+
+        <!-- KPI 3 -->
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-semibold text-slate-500 uppercase">Saldo Devedor (Juros)</span>
+            <span class="p-2 bg-indigo-50 text-indigo-600 rounded-lg">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </span>
+          </div>
+          <p id="kpiDebtBalance" class="text-2xl font-extrabold text-slate-900 mt-2">R$ 0,00</p>
+          <p id="kpiActiveContracts" class="text-xs text-slate-500 mt-1">0 contratos ativos</p>
+        </div>
+
+        <!-- KPI 4 -->
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-semibold text-slate-500 uppercase">Juros Mensais Atuais</span>
+            <span class="p-2 bg-rose-50 text-rose-600 rounded-lg">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+            </span>
+          </div>
+          <p id="kpiMonthlyInterest" class="text-2xl font-extrabold text-rose-600 mt-2">R$ 0,00</p>
+          <p class="text-xs text-slate-500 mt-1">Custo mensal sobre saldo ativo</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- NAVEGAÇÃO POR ABAS -->
+    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden min-w-0 max-w-full">
+      <div class="border-b border-slate-200 flex overflow-x-auto bg-slate-50/70">
+        <button onclick="switchTab('checks')" id="tabBtn-checks" class="tab-active flex items-center gap-2 px-6 py-4 text-sm whitespace-nowrap transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+          <span>Folhas de Cheque (Fornecedores & Geral)</span>
+          <span id="badgeChecksCount" class="ml-1 bg-blue-100 text-blue-700 text-xs font-bold px-2 py-0.5 rounded-full">0</span>
+        </button>
+
+        <button onclick="switchTab('contracts')" id="tabBtn-contracts" class="flex items-center gap-2 px-6 py-4 text-sm font-medium text-slate-600 hover:text-slate-900 whitespace-nowrap transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <span>Contratos a Juros & Controle Mensal</span>
+          <span id="badgeContractsCount" class="ml-1 bg-slate-200 text-slate-700 text-xs font-bold px-2 py-0.5 rounded-full">0</span>
+        </button>
+      </div>
+
+      <!-- ========================================================= -->
+      <!-- ABA 1: FOLHAS DE CHEQUE (FORNECEDORES & GERAL)           -->
+      <!-- ========================================================= -->
+      <div id="tabContent-checks" class="p-4 sm:p-6 space-y-6 min-w-0 max-w-full">
+        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 sm:p-5">
+          <div class="mb-4">
+            <h3 class="font-bold text-slate-800 text-base flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-blue-600"></span>
+              Cadastrar Folha de Cheque (Fornecedor ou Operação)
+            </h3>
+            <p class="text-xs text-slate-500 mt-0.5">Preencha os dados da folha ou ative a sequência em lote para lançar várias folhas seguidas de uma só vez.</p>
+          </div>
+
+          <datalist id="bankSuggestions">
+            <option value="Banco do Brasil">
+            <option value="Bradesco">
+            <option value="Itaú">
+            <option value="Caixa Econômica">
+            <option value="Santander">
+            <option value="Sicoob">
+            <option value="Sicredi">
+          </datalist>
+
+          <form id="checkForm" onsubmit="saveCheck(event)" class="space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3.5">
+              <div class="lg:col-span-2">
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Destinatário / Fornecedor *</label>
+                <input type="text" id="checkRecipient" required placeholder="Ex: Fornecedor / Atacado" class="min-w-0 w-full bg-white border border-slate-300 rounded-xl px-3 py-2.5 text-sm text-slate-800 focus:ring-2 focus:ring-blue-500 outline-none" />
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Banco *</label>
+                <input type="text" id="checkBank" list="bankSuggestions" required placeholder="Ex: Banco do Brasil" class="min-w-0 w-full bg-white border border-slate-300 rounded-xl px-3 py-2.5 text-sm text-slate-800 focus:ring-2 focus:ring-blue-500 outline-none" />
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Nº do Cheque *</label>
+                <input type="text" id="checkNumber" required placeholder="Ex: 000450" class="min-w-0 w-full bg-white border border-slate-300 rounded-xl px-3 py-2.5 text-sm text-slate-800 focus:ring-2 focus:ring-blue-500 outline-none" />
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Data (Bom para) *</label>
+                <input type="date" id="checkDate" required class="min-w-0 w-full bg-white border border-slate-300 rounded-xl px-3 py-2.5 text-sm text-slate-800 focus:ring-2 focus:ring-blue-500 outline-none" />
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Valor (R$) *</label>
+                <input type="number" id="checkAmount" step="0.01" min="0.01" required placeholder="0,00" class="min-w-0 w-full bg-white border border-slate-300 rounded-xl px-3 py-2.5 text-sm text-slate-800 focus:ring-2 focus:ring-blue-500 outline-none" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 items-end">
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Tipo de Lançamento</label>
+                <select id="checkType" onchange="toggleCheckContractSelect()" class="min-w-0 w-full bg-white border border-slate-300 rounded-xl px-3 py-2.5 text-sm text-slate-800 focus:ring-2 focus:ring-blue-500 outline-none">
+                  <option value="fornecedor">Fornecedor / Compra Direta</option>
+                  <option value="contrato">Vinculado a Contrato com Juros</option>
+                </select>
+              </div>
+
+              <div id="checkContractWrapper" class="hidden">
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Contrato Vinculado</label>
+                <select id="checkContractId" class="min-w-0 w-full bg-white border border-slate-300 rounded-xl px-3 py-2.5 text-sm text-slate-800 focus:ring-2 focus:ring-blue-500 outline-none"></select>
+              </div>
+
+              <div class="sm:col-span-1 lg:col-span-1">
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Observação</label>
+                <input type="text" id="checkNote" placeholder="Ex: Pedido loja / Nota fiscal" class="min-w-0 w-full bg-white border border-slate-300 rounded-xl px-3 py-2.5 text-sm text-slate-800 focus:ring-2 focus:ring-blue-500 outline-none" />
+              </div>
+            </div>
+
+            <!-- Geração em Lote / Sequência -->
+            <div class="pt-3 border-t border-slate-200/80 flex flex-wrap items-center justify-between gap-4">
+              <div class="flex flex-wrap items-center gap-4">
+                <label class="inline-flex items-center gap-2 cursor-pointer select-none">
+                  <input type="checkbox" id="checkBatchMode" onchange="toggleBatchFields()" class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500" />
+                  <span class="text-xs font-semibold text-slate-700">Gerar sequência de folhas (parcelado)</span>
+                </label>
+
+                <div id="batchFields" class="hidden flex items-center gap-2 flex-wrap">
+                  <label class="text-xs text-slate-600 font-medium">Qtd. folhas:</label>
+                  <input type="number" id="batchQty" value="3" min="2" max="60" class="w-20 bg-white border border-slate-300 rounded-lg px-2.5 py-1 text-xs font-semibold" />
+                  <label class="text-xs text-slate-600 font-medium">Intervalo (dias):</label>
+                  <input type="number" id="batchIntervalDays" value="30" min="1" max="180" class="w-20 bg-white border border-slate-300 rounded-lg px-2.5 py-1 text-xs font-semibold" />
+                </div>
+              </div>
+
+              <button type="submit" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm px-6 py-2.5 rounded-xl shadow-sm transition flex items-center justify-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+                <span id="saveCheckLabel">Salvar Cheque</span>
+              </button>
+              <button type="button" id="btnCancelEdit" onclick="cancelCheckEdit()" class="hidden w-full sm:w-auto bg-slate-200 hover:bg-slate-300 text-slate-800 font-semibold text-sm px-5 py-2.5 rounded-xl transition">Cancelar edição</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Filtros e Busca da Tabela de Cheques -->
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div class="flex items-center gap-1.5 flex-wrap">
+            <button onclick="setCheckStatusFilter('ALL')" id="filterStatus-ALL" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-900 text-white transition">Todos</button>
+            <button onclick="setCheckStatusFilter('aberto')" id="filterStatus-aberto" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">Em Aberto</button>
+            <button onclick="setCheckStatusFilter('compensado')" id="filterStatus-compensado" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">Compensados</button>
+            <button onclick="setCheckStatusFilter('resgatado')" id="filterStatus-resgatado" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">Resgatados</button>
+            <button onclick="setCheckStatusFilter('devolvido')" id="filterStatus-devolvido" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">Devolvidos</button>
+          </div>
+
+          <div class="w-full sm:w-64">
+            <input type="text" id="checkSearchInput" oninput="renderChecksTable()" placeholder="Buscar destinatário, nº ou banco..." class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs text-slate-800 focus:ring-2 focus:ring-blue-500 outline-none" />
+          </div>
+        </div>
+
+        <!-- Lista Mobile de Folhas de Cheque (tudo visível sem arrastar para o lado) -->
+        <div id="checksMobileList" class="md:hidden space-y-2.5">
+          <!-- Preenchido via JS -->
+        </div>
+
+        <!-- Tabela Responsiva de Folhas de Cheque (Desktop) -->
+        <div class="hidden md:block w-full max-w-full min-w-0 overflow-x-auto border border-slate-200 rounded-2xl">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-slate-100/80 border-b border-slate-200 text-[11px] font-bold uppercase tracking-wider text-slate-600">
+                <th class="py-3 px-4">Data</th>
+                <th class="py-3 px-4">Destinatário</th>
+                <th class="py-3 px-4">Banco</th>
+                <th class="py-3 px-4">Nº Cheque</th>
+                <th class="py-3 px-4 text-right">Valor</th>
+                <th class="py-3 px-4 text-center">Status</th>
+                <th class="py-3 px-4 text-right">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="checksTableBody" class="divide-y divide-slate-200 text-xs bg-white">
+              <!-- Preenchido via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ========================================================= -->
+      <!-- ABA 2: CONTRATOS A JUROS E CONTROLE MENSAL                -->
+      <!-- ========================================================= -->
+      <div id="tabContent-contracts" class="hidden p-4 sm:p-6 space-y-6 min-w-0 max-w-full">
+
+        <!-- Formulário de Novo Contrato com Juros -->
+        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 sm:p-5">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <h3 id="contractFormTitle" class="font-bold text-slate-800 text-base flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-indigo-600"></span>
+                Novo Contrato / Captação a Juros (Gera Cronograma Mensal)
+              </h3>
+              <p class="text-xs text-slate-500 mt-0.5">Gera automaticamente todos os meses (Só Juros até a data escolhida + Amortização depois) para você marcar como Pago mês a mês.</p>
+            </div>
+          </div>
+          <div id="contractEditBanner" class="hidden mb-4 p-3 rounded-xl bg-indigo-50 border border-indigo-200 text-indigo-900 text-xs flex flex-wrap items-center justify-between gap-2">
+            <span>Editando contrato. Ao salvar, os meses pendentes serão recalculados preservando os meses já pagos.</span>
+            <button type="button" onclick="cancelContractEdit()" class="px-3 py-1 rounded-lg bg-white border border-indigo-300 font-bold text-indigo-800 hover:bg-indigo-100">Cancelar edição</button>
+          </div>
+
+          <form id="contractForm" onsubmit="saveContract(event)" class="space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Credor / Origem *</label>
+                <input type="text" id="contractCreditor" required placeholder="Ex: Investidor Carlos / Parceiro" class="min-w-0 w-full bg-white border border-slate-300 rounded-xl px-3 py-2.5 text-sm text-slate-800 focus:ring-2 focus:ring-indigo-500 outline-none" />
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Valor Principal Captado (R$) *</label>
+                <input type="number" id="contractPrincipal" step="0.01" min="1" required placeholder="Ex: 150000" class="min-w-0 w-full bg-white border border-slate-300 rounded-xl px-3 py-2.5 text-sm text-slate-800 focus:ring-2 focus:ring-indigo-500 outline-none" />
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Taxa de Juros (% ao mês) *</label>
+                <input type="number" id="contractRate" step="0.01" min="0.01" required placeholder="Ex: 4" class="min-w-0 w-full bg-white border border-slate-300 rounded-xl px-3 py-2.5 text-sm text-slate-800 focus:ring-2 focus:ring-indigo-500 outline-none" />
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">1º Vencimento Mensal *</label>
+                <input type="date" id="contractStartDate" required class="min-w-0 w-full bg-white border border-slate-300 rounded-xl px-3 py-2.5 text-sm text-slate-800 focus:ring-2 focus:ring-indigo-500 outline-none" />
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Mês de Início da Amortização *</label>
+                <input type="month" id="contractAmortizationStart" required class="min-w-0 w-full bg-white border border-slate-300 rounded-xl px-3 py-2.5 text-sm text-slate-800 focus:ring-2 focus:ring-indigo-500 outline-none" />
+                <span class="text-[11px] text-slate-500">Antes desse mês: só juros. Neste mês e nos seguintes: juros + principal.</span>
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Principal dividido em quantos cheques/parcelas?</label>
+                <input type="number" id="contractParcels" value="10" min="1" max="60" class="min-w-0 w-full bg-white border border-slate-300 rounded-xl px-3 py-2.5 text-sm text-slate-800 focus:ring-2 focus:ring-indigo-500 outline-none" />
+                <span class="text-[11px] text-slate-500">Calcula sozinho a amortização mensal e o total de meses.</span>
+              </div>
+
+              <div class="grid grid-cols-2 gap-2">
+                <div>
+                  <label class="block text-xs font-semibold text-slate-700 mb-1">Qtd. Total de Meses *</label>
+                  <input type="number" id="contractTotalMonths" value="10" min="1" max="60" required class="min-w-0 w-full bg-white border border-slate-300 rounded-xl px-3 py-2.5 text-sm text-slate-800 focus:ring-2 focus:ring-indigo-500 outline-none" />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-slate-700 mb-1">Amortiz. Mensal (R$)</label>
+                  <input type="number" id="contractPlannedAmort" step="0.01" min="0" value="15000" placeholder="Ex: 15000" class="min-w-0 w-full bg-white border border-slate-300 rounded-xl px-3 py-2.5 text-sm text-slate-800 focus:ring-2 focus:ring-indigo-500 outline-none" />
+                </div>
+              </div>
+
+              <div id="contractPreview" class="hidden sm:col-span-2 lg:col-span-3 text-xs rounded-xl p-3 border"></div>
+
+              <div class="sm:col-span-2 lg:col-span-3">
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Observações do Acordo</label>
+                <input type="text" id="contractNotes" placeholder="Ex: 10 folhas entregues como garantia; até fevereiro paga só juros" class="min-w-0 w-full bg-white border border-slate-300 rounded-xl px-3 py-2.5 text-sm text-slate-800 focus:ring-2 focus:ring-indigo-500 outline-none" />
+              </div>
+            </div>
+
+            <!-- Opção de Gerar Folhas de Cheque Vinculadas ao Criar o Contrato -->
+            <div class="pt-3 border-t border-slate-200/80 space-y-3">
+              <label class="inline-flex items-center gap-2 cursor-pointer select-none">
+                <input type="checkbox" id="contractGenChecks" onchange="toggleContractChecksFields()" class="w-4 h-4 text-indigo-600 rounded border-slate-300 focus:ring-indigo-500" />
+                <span class="text-xs font-semibold text-slate-700">Gerar também as folhas de cheque entregues nesse contrato</span>
+              </label>
+
+              <div id="contractChecksFields" class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 bg-white p-3.5 rounded-xl border border-slate-200">
+                <div>
+                  <label class="block text-[11px] font-semibold text-slate-600 mb-1">Banco das Folhas</label>
+                  <input type="text" id="ccBank" list="bankSuggestions" placeholder="Ex: Banco do Brasil" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-2.5 py-1.5 text-xs" />
+                </div>
+                <div>
+                  <label class="block text-[11px] font-semibold text-slate-600 mb-1">Nº do 1º Cheque</label>
+                  <input type="text" id="ccStartNum" placeholder="Ex: 000501" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-2.5 py-1.5 text-xs" />
+                </div>
+                <div>
+                  <label class="block text-[11px] font-semibold text-slate-600 mb-1">Qtd. de Folhas</label>
+                  <input type="number" id="ccQty" value="10" min="1" max="48" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-2.5 py-1.5 text-xs" />
+                </div>
+                <div>
+                  <label class="block text-[11px] font-semibold text-slate-600 mb-1">1º Vencimento</label>
+                  <input type="date" id="ccFirstDate" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-2.5 py-1.5 text-xs" />
+                </div>
+                <div>
+                  <label class="block text-[11px] font-semibold text-slate-600 mb-1">Valor por Folha (R$)</label>
+                  <input type="number" id="ccAmount" step="0.01" placeholder="Ex: 6000" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-2.5 py-1.5 text-xs" />
+                </div>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-end gap-2">
+              <button type="button" id="btnCancelContractEdit" onclick="cancelContractEdit()" class="hidden w-full sm:w-auto bg-slate-200 hover:bg-slate-300 text-slate-800 font-semibold text-sm px-5 py-2.5 rounded-xl transition">Cancelar edição</button>
+              <button type="submit" class="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-sm px-6 py-2.5 rounded-xl shadow-sm transition flex items-center justify-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+                <span id="saveContractLabel">Criar Contrato e Cronograma</span>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Lista de Contratos Ativos e Quitados -->
+        <div id="interestPanel" class="space-y-5 min-w-0 max-w-full"></div>
+
+        <div id="contractsList" class="space-y-5 min-w-0 max-w-full">
+          <!-- Renderizado via JS -->
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center text-xs text-slate-400">
+    Gestão Financeira / Cheque • Dados salvos localmente no seu navegador. Faça backups periódicos pelo botão no topo.
+  </footer>
+
+  <!-- ========================================================= -->
+  <!-- MODAL: REGISTRAR PAGAMENTO / AMORTIZAÇÃO DE CONTRATO      -->
+  <!-- ========================================================= -->
+  <div id="paymentModal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-lg w-full shadow-2xl border border-slate-200 overflow-hidden">
+      <div class="bg-slate-900 text-white px-5 py-4 flex items-center justify-between">
+        <div>
+          <h3 id="modalHeaderTitle" class="font-bold text-base">Confirmar Pagamento Mensal</h3>
+          <p id="modalContractTitle" class="text-xs text-slate-300 mt-0.5"></p>
+        </div>
+        <button onclick="closePaymentModal()" class="text-slate-400 hover:text-white p-1">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <form onsubmit="submitContractPayment(event)" class="p-5 space-y-4">
+        <input type="hidden" id="payContractId" />
+        <input type="hidden" id="payScheduleId" value="" />
+
+        <!-- Resumo Atual do Contrato no Modal -->
+        <div class="grid grid-cols-2 gap-3 bg-slate-50 p-3.5 rounded-xl border border-slate-200 text-xs">
+          <div>
+            <span class="text-slate-500 block">Saldo Devedor Atual</span>
+            <span id="modalCurrentBalance" class="text-base font-extrabold text-slate-900">R$ 0,00</span>
+          </div>
+          <div>
+            <span class="text-slate-500 block">Juros Calculados do Mês</span>
+            <span id="modalSuggestedInterest" class="text-base font-extrabold text-rose-600">R$ 0,00</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Data em que foi Pago *</label>
+            <input type="date" id="payDate" required class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-500" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Juros Pagos (R$) *</label>
+            <input type="number" id="payInterest" step="0.01" min="0" required oninput="updateModalPreview()" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-500" />
+          </div>
+
+          <div class="sm:col-span-2">
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Abatimento / Amortização do Principal (R$)</label>
+            <input type="number" id="payAmortization" step="0.01" min="0" value="0" oninput="updateModalPreview()" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-500" />
+            <p class="text-[11px] text-slate-500 mt-1">Se for mês de "Só Juros", mantenha 0,00. Ao abater o principal, os juros dos próximos meses caem automaticamente.</p>
+          </div>
+        </div>
+
+        <!-- Vincular baixa de folha de cheque -->
+        <div id="modalCheckRedeemWrapper" class="hidden">
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Dar baixa em alguma folha vinculada? (Opcional)</label>
+          <select id="payRedeemCheckId" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs text-slate-800 outline-none focus:ring-2 focus:ring-indigo-500">
+            <option value="">Não baixar nenhuma folha agora</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Observação (Opcional)</label>
+          <input type="text" id="payNote" placeholder="Ex: Pago via PIX + resgate da folha 000501" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-500" />
+        </div>
+
+        <!-- Simulação Instantânea Pós-Pagamento -->
+        <div class="bg-indigo-50/80 border border-indigo-200 rounded-xl p-3.5 text-xs space-y-1">
+          <div class="flex justify-between">
+            <span class="text-indigo-900 font-medium">Total pago neste mês:</span>
+            <span id="modalTotalOut" class="font-bold text-indigo-950">R$ 0,00</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-indigo-900 font-medium">Novo Saldo Devedor:</span>
+            <span id="modalNewBalance" class="font-bold text-indigo-950">R$ 0,00</span>
+          </div>
+          <div class="flex justify-between pt-1 border-t border-indigo-200/70">
+            <span class="text-indigo-900 font-medium">Juros dos próximos meses:</span>
+            <span id="modalNextInterest" class="font-extrabold text-emerald-700">R$ 0,00</span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-end gap-2 pt-2">
+          <button type="button" onclick="closePaymentModal()" class="px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-100 rounded-xl transition">Cancelar</button>
+          <button type="submit" class="px-5 py-2.5 text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl shadow-sm transition flex items-center gap-1.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            <span>Confirmar como PAGO</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast de Feedback (Substitui alert()) -->
+  <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+    <div class="bg-slate-900 text-white px-4 py-3 rounded-xl shadow-xl border border-slate-700 flex items-center gap-2.5 text-xs font-medium">
+      <span id="toastIcon" class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+      <span id="toastMessage">Ação concluída!</span>
+    </div>
+  </div>
+
+  <script>
+    // =========================================================================
+    // ESTADO GLOBAL E PERSISTÊNCIA (localStorage)
+    // =========================================================================
+    const STORAGE_KEY = 'gestao_financeira_cheque_v1';
+
+    let appState = {
+      settings: {
+        advanceDays: 5
+      },
+      checks: [],
+      contracts: []
+    };
+
+    let currentCheckStatusFilter = 'ALL';
+
+    // Utilitários de Data e Moeda
+    function getTodayISO() {
+      const now = new Date();
+      const offset = now.getTimezoneOffset() * 60000;
+      return new Date(now.getTime() - offset).toISOString().split('T')[0];
+    }
+
+    function addDaysISO(dateISO, days) {
+      const [y, m, d] = dateISO.split('-').map(Number);
+      const dt = new Date(y, m - 1, d);
+      dt.setDate(dt.getDate() + days);
+      const yyyy = dt.getFullYear();
+      const mm = String(dt.getMonth() + 1).padStart(2, '0');
+      const dd = String(dt.getDate()).padStart(2, '0');
+      return `${yyyy}-${mm}-${dd}`;
+    }
+
+    function addMonthsISO(dateISO, months) {
+      const [y, m, d] = dateISO.split('-').map(Number);
+      // Limita o dia ao último dia do mês (31/01 + 1 mês = 28/02, não 03/03)
+      const first = new Date(y, m - 1 + months, 1);
+      const lastDay = new Date(first.getFullYear(), first.getMonth() + 1, 0).getDate();
+      const dt = new Date(first.getFullYear(), first.getMonth(), Math.min(d, lastDay));
+      const yyyy = dt.getFullYear();
+      const mm = String(dt.getMonth() + 1).padStart(2, '0');
+      const dd = String(dt.getDate()).padStart(2, '0');
+      return `${yyyy}-${mm}-${dd}`;
+    }
+
+    function formatDateBR(dateISO) {
+      if (!dateISO) return '-';
+      const [y, m, d] = dateISO.split('-');
+      return `${d}/${m}/${y}`;
+    }
+
+    function formatMonthBR(monthISO) {
+      if (!monthISO) return '-';
+      const [y, m] = monthISO.split('-');
+      const meses = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+      return `${meses[parseInt(m, 10) - 1]}/${y}`;
+    }
+
+    function r2(v) { return Math.round((Number(v) || 0) * 100) / 100; }
+
+    function esc(s) {
+      return String(s ?? '').replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+    }
+
+    function formatBRL(value) {
+      return Number(value || 0).toLocaleString('pt-BR', {
+        style: 'currency',
+        currency: 'BRL'
+      });
+    }
+
+    function diffDaysFromToday(targetISO) {
+      const todayStr = getTodayISO();
+      const [ty, tm, td] = todayStr.split('-').map(Number);
+      const [y, m, d] = targetISO.split('-').map(Number);
+      const todayDate = new Date(ty, tm - 1, td);
+      const targetDate = new Date(y, m - 1, d);
+      return Math.round((targetDate - todayDate) / (1000 * 60 * 60 * 24));
+    }
+
+    function incrementCheckNumber(numStr, step) {
+      const match = numStr.match(/^(.*?)(\d+)$/);
+      if (!match) return `${numStr}-${step + 1}`;
+      const prefix = match[1];
+      const digits = match[2];
+      const nextVal = String(parseInt(digits, 10) + step).padStart(digits.length, '0');
+      return `${prefix}${nextVal}`;
+    }
+
+    function showToast(msg, type = 'success') {
+      const toast = document.getElementById('toast');
+      const icon = document.getElementById('toastIcon');
+      const text = document.getElementById('toastMessage');
+
+      text.textContent = msg;
+      icon.className = 'w-2.5 h-2.5 rounded-full ' + (
+        type === 'error' ? 'bg-rose-500' :
+        type === 'warning' ? 'bg-amber-400' : 'bg-emerald-400'
+      );
+
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 3200);
+    }
+
+    // =========================================================================
+    // DADOS INICIAIS DE EXEMPLO (CENÁRIO R$ 150 MIL + FORNECEDORES)
+    // =========================================================================
+    function buildScheduleItems({ principal, rate, firstDueDate, amortizationStart, totalMonths, plannedAmort }) {
+      const items = [];
+      let simBalance = Number(principal);
+      const amortVal = Number(plannedAmort) || 0;
+
+      for (let i = 0; i < totalMonths; i++) {
+        const dueDate = addMonthsISO(firstDueDate, i);
+        const monthRef = dueDate.slice(0, 7);
+        const isGrace = monthRef < amortizationStart;
+        const interestExpected = r2(simBalance * (rate / 100));
+        const amortExpected = isGrace ? 0 : Math.min(simBalance, amortVal);
+
+        items.push({
+          id: 'sch_' + Date.now() + '_' + i + '_' + Math.random().toString(36).slice(2, 6),
+          monthRef,
+          dueDate,
+          typeLabel: isGrace ? 'Só Juros' : 'Amortização + Juros',
+          interestExpected,
+          amortExpected,
+          status: 'pendente',
+          paidDate: '',
+          interestPaid: 0,
+          amortPaid: 0,
+          note: ''
+        });
+
+        simBalance = Math.max(0, r2(simBalance - amortExpected));
+      }
+      return items;
+    }
+
+    function recalculateContractSchedule(ctr) {
+      let runningBalance = Number(ctr.originalPrincipal);
+      const rate = Number(ctr.monthlyRate);
+
+      // Ordena cronologicamente por vencimento
+      ctr.schedule.sort((a, b) => a.dueDate.localeCompare(b.dueDate));
+
+      ctr.schedule.forEach(item => {
+        if (item.status === 'pago') {
+          runningBalance = Math.max(0, r2(runningBalance - Number(item.amortPaid || 0)));
+        } else {
+          const isGrace = item.monthRef < ctr.amortizationStart;
+          item.typeLabel = isGrace ? 'Só Juros' : 'Amortização + Juros';
+          item.interestExpected = r2(runningBalance * (rate / 100));
+          const planned = Number(ctr.plannedAmort || 0);
+          item.amortExpected = isGrace ? 0 : Math.min(runningBalance, planned);
+          runningBalance = Math.max(0, r2(runningBalance - item.amortExpected));
+        }
+      });
+
+      // Saldo devedor real atual = Principal original menos tudo que já foi amortizado nos meses pagos
+      const totalPaidAmort = ctr.schedule
+        .filter(s => s.status === 'pago')
+        .reduce((acc, s) => acc + Number(s.amortPaid || 0), 0);
+
+      ctr.currentBalance = Math.max(0, r2(Number(ctr.originalPrincipal) - totalPaidAmort));
+    }
+
+    // 10 folhas de cheque do contrato de exemplo: uma por vencimento, valor = juros + amortização do mês
+    function buildExampleFolhas(contractId, creditor, schedule) {
+      return schedule.map((s, i) => ({
+        id: 'chk_ex_c' + (i + 1),
+        type: 'contrato',
+        contractId,
+        recipient: creditor,
+        bank: 'Itaú',
+        number: incrementCheckNumber('000501', i),
+        date: s.dueDate,
+        amount: Math.round(Number(s.amortExpected) * 100) / 100,
+        status: 'aberto',
+        note: `Folha ${i + 1}/${schedule.length} - principal (juros pagos à parte)`
+      }));
+    }
+
+    // Contrato de exemplo: 2 meses só de juros e 10 parcelas (juros + R$ 15.000 de principal), 1 folha por parcela
+    function buildExampleContract() {
+      const today = getTodayISO();
+      const id = 'ctr_exemplo_150k';
+      const creditor = 'Investidor Parceiro (Exemplo R$ 150k)';
+      const firstDue = addMonthsISO(addDaysISO(today, 4), 1);
+      const amortStart = addMonthsISO(firstDue, 2).slice(0, 7);
+      const schedule = buildScheduleItems({ principal: 150000, rate: 4.0, firstDueDate: firstDue, amortizationStart: amortStart, totalMonths: 12, plannedAmort: 15000 });
+      const ctr = {
+        id, creditor, originalPrincipal: 150000, currentBalance: 150000, monthlyRate: 4.0,
+        startDate: firstDue, amortizationStart: amortStart, plannedAmort: 15000, exampleVersion: 4,
+        notes: 'Exemplo: 2 meses só de juros (R$ 6.000/mês); depois 10 parcelas de juros + R$ 15.000 de principal, com 1 folha de R$ 15.000 por parcela do principal; os juros são pagos à parte.',
+        schedule
+      };
+      return { ctr, folhas: buildExampleFolhas(id, creditor, schedule.filter(x => x.amortExpected > 0)) };
+    }
+
+    // Migração: troca o exemplo antigo salvo no navegador (só se nada foi pago nem editado)
+    function migrateExample10(contracts, checks) {
+      const idx = contracts.findIndex(c => c.id === 'ctr_exemplo_150k');
+      if (idx < 0 || !Array.isArray(checks)) return;
+      const old = contracts[idx];
+      if (old.exampleVersion === 4) return;
+      const untouched = Array.isArray(old.schedule) && !old.schedule.some(x => x.status === 'pago')
+        && checks.filter(k => k.contractId === old.id).every(k => /^chk_ex_(4|5|c\d+)$/.test(k.id));
+      if (!untouched) return;
+      const { ctr, folhas } = buildExampleContract();
+      contracts[idx] = ctr;
+      for (let i = checks.length - 1; i >= 0; i--) if (checks[i].contractId === old.id) checks.splice(i, 1);
+      checks.push(...folhas);
+    }
+
+    function seedInitialData() {
+      const today = getTodayISO();
+      const currentYear = new Date().getFullYear();
+      const nextYear = currentYear + 1;
+      const febMonth = `${nextYear}-02`;
+
+      const { ctr: sampleContract, folhas: sampleFolhas } = buildExampleContract();
+
+      appState = {
+        settings: {
+          advanceDays: 5
+        },
+        contracts: [sampleContract],
+        checks: [
+          {
+            id: 'chk_ex_1',
+            type: 'fornecedor',
+            contractId: '',
+            recipient: 'Distribuidora Atacado Brasil',
+            bank: 'Banco do Brasil',
+            number: '000410',
+            date: today,
+            amount: 4850.00,
+            status: 'aberto',
+            note: 'Compra mercadoria loja - NF 8821'
+          },
+          {
+            id: 'chk_ex_2',
+            type: 'fornecedor',
+            contractId: '',
+            recipient: 'Indústria Têxtil Horizonte',
+            bank: 'Bradesco',
+            number: '001102',
+            date: addDaysISO(today, 3),
+            amount: 7200.00,
+            status: 'aberto',
+            note: 'Parcela 1/2 pedido coleção'
+          },
+          {
+            id: 'chk_ex_3',
+            type: 'fornecedor',
+            contractId: '',
+            recipient: 'Indústria Têxtil Horizonte',
+            bank: 'Bradesco',
+            number: '001103',
+            date: addDaysISO(today, 33),
+            amount: 7200.00,
+            status: 'aberto',
+            note: 'Parcela 2/2 pedido coleção'
+          },
+          ...sampleFolhas
+        ]
+      };
+
+      saveState();
+    }
+
+    function clearExampleData() {
+      if (!confirm('Apagar TODOS os cheques e contratos? Isso não pode ser desfeito. Faça um backup antes se precisar.')) return;
+      appState.checks = [];
+      appState.contracts = [];
+      saveState();
+      renderAll();
+      showToast('Dados de exemplo removidos! Pronto para seus lançamentos.');
+    }
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) {
+          seedInitialData();
+        } else {
+          const parsed = JSON.parse(raw);
+          const contracts = Array.isArray(parsed.contracts) ? parsed.contracts : [];
+          // Migração suave caso exista contrato da versão anterior sem cronograma
+          contracts.forEach(ctr => {
+            if (!Array.isArray(ctr.schedule)) {
+              ctr.plannedAmort = ctr.plannedAmort || 0;
+              ctr.schedule = buildScheduleItems({
+                principal: ctr.currentBalance,
+                rate: ctr.monthlyRate,
+                firstDueDate: addMonthsISO(ctr.startDate || getTodayISO(), 1),
+                amortizationStart: ctr.amortizationStart || getTodayISO().slice(0, 7),
+                totalMonths: 6,
+                plannedAmort: ctr.plannedAmort
+              });
+            }
+          });
+          // Migração: remove o "mês anterior pago" que o exemplo antigo trazia (cronograma começava no passado)
+          contracts.forEach(ctr => {
+            if (ctr.id === 'ctr_exemplo_150k' && Array.isArray(ctr.schedule) && ctr.schedule[0] && ctr.schedule[0].id === 'sch_ex_0') {
+              ctr.schedule.shift();
+              if (ctr.schedule[0]) ctr.startDate = ctr.schedule[0].dueDate;
+              recalculateContractSchedule(ctr);
+            }
+          });
+          migrateExample10(contracts, parsed.checks);
+          appState = {
+            settings: { advanceDays: parsed.settings?.advanceDays || 5, alertsOn: !!parsed.settings?.alertsOn },
+            checks: Array.isArray(parsed.checks) ? parsed.checks : [],
+            contracts
+          };
+        }
+      } catch (err) {
+        console.error('Erro ao carregar dados:', err);
+        seedInitialData();
+      }
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+      } catch (err) {
+        showToast('Erro ao salvar no navegador!', 'error');
+      }
+    }
+
+    // =========================================================================
+    // BACKUP E RESTAURAÇÃO (JSON)
+    // =========================================================================
+    function exportBackup() {
+      const dataStr = JSON.stringify(appState, null, 2);
+      const blob = new Blob([dataStr], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `backup-gestao-cheques-${getTodayISO()}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast('Backup baixado com sucesso!');
+    }
+
+    function importBackup(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const imported = JSON.parse(e.target.result);
+          if (!Array.isArray(imported.checks) || !Array.isArray(imported.contracts)) {
+            throw new Error('Formato inválido');
+          }
+          if (!confirm('Substituir TODOS os dados atuais pelo backup?')) { event.target.value = ''; return; }
+          appState = {
+            settings: { advanceDays: imported.settings?.advanceDays || 5, alertsOn: !!imported.settings?.alertsOn },
+            checks: imported.checks,
+            contracts: imported.contracts
+          };
+          saveState();
+          renderAll();
+          showToast('Dados restaurados com sucesso!');
+        } catch (err) {
+          showToast('Arquivo de backup inválido!', 'error');
+        }
+        event.target.value = '';
+      };
+      reader.readAsText(file);
+    }
+
+    // =========================================================================
+    // ALERTAS, LEMBRETES ANTECIPADOS, SOM E WHATSAPP
+    // =========================================================================
+    function updateAdvanceDays(days) {
+      appState.settings.advanceDays = parseInt(days, 10) || 5;
+      saveState();
+      renderAlerts();
+      showToast(`Antecedência ajustada para ${appState.settings.advanceDays} dias.`);
+    }
+
+    function getUpcomingAlertsData() {
+      const advanceDays = appState.settings.advanceDays;
+      const openChecks = appState.checks.filter(c => c.status === 'aberto').map(c => ({
+        id: c.id,
+        kind: 'Cheque',
+        number: c.number,
+        bank: c.bank,
+        recipient: c.recipient,
+        date: c.date,
+        amount: Number(c.amount)
+      }));
+
+      // Inclui parcelas mensais pendentes de contratos a juros
+      const openContractMonths = [];
+      appState.contracts.forEach(ctr => {
+        if (Number(ctr.currentBalance) <= 0) return;
+        (ctr.schedule || []).forEach(sch => {
+          if (sch.status !== 'pendente') return;
+          const totalExpected = Number(sch.interestExpected || 0) + Number(sch.amortExpected || 0);
+          // Cheques em aberto do mesmo contrato e mês já cobrem parte da parcela (ex.: o principal).
+          const covered = appState.checks
+            .filter(k => k.contractId === ctr.id && k.status === 'aberto' && k.date && k.date.slice(0, 7) === sch.monthRef)
+            .reduce((acc, k) => acc + Number(k.amount || 0), 0);
+          const remaining = r2(totalExpected - covered);
+          if (remaining > 0.005) {
+            openContractMonths.push({
+              id: sch.id,
+              kind: 'Mensalidade Juros',
+              number: formatMonthBR(sch.monthRef),
+              bank: ctr.creditor,
+              recipient: covered > 0 ? `${ctr.creditor} (juros, fora dos cheques)` : `${ctr.creditor} (${sch.typeLabel})`,
+              date: sch.dueDate,
+              amount: remaining
+            });
+          }
+        });
+      });
+
+      const allUpcomingItems = [...openChecks, ...openContractMonths];
+
+      const overdue = [];
+      const dueToday = [];
+      const dueSoon = [];
+
+      allUpcomingItems.forEach(item => {
+        const diff = diffDaysFromToday(item.date);
+        if (diff < 0) {
+          overdue.push({ ...item, diff });
+        } else if (diff === 0) {
+          dueToday.push({ ...item, diff });
+        } else if (diff > 0 && diff <= advanceDays) {
+          dueSoon.push({ ...item, diff });
+        }
+      });
+
+      overdue.sort((a, b) => a.date.localeCompare(b.date));
+      dueToday.sort((a, b) => b.amount - a.amount);
+      dueSoon.sort((a, b) => a.date.localeCompare(b.date));
+
+      return { overdue, dueToday, dueSoon, advanceDays };
+    }
+
+    function renderAlerts() {
+      const { overdue, dueToday, dueSoon, advanceDays } = getUpcomingAlertsData();
+      document.getElementById('advanceDaysSelect').value = String(advanceDays);
+
+      const container = document.getElementById('alertsContainer');
+      const alertPing = document.getElementById('alertPing');
+      const alertDot = document.getElementById('alertDot');
+
+      const hasUrgent = overdue.length > 0 || dueToday.length > 0;
+      if (hasUrgent) {
+        alertPing.className = 'animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-500 opacity-75';
+        alertDot.className = 'relative inline-flex rounded-full h-3 w-3 bg-rose-600';
+      } else if (dueSoon.length > 0) {
+        alertPing.className = 'animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75';
+        alertDot.className = 'relative inline-flex rounded-full h-3 w-3 bg-amber-500';
+      } else {
+        alertPing.className = 'hidden';
+        alertDot.className = 'relative inline-flex rounded-full h-3 w-3 bg-emerald-500';
+      }
+
+      const sumList = (arr) => arr.reduce((acc, item) => acc + Number(item.amount), 0);
+
+      // Card 1: Vencem HOJE
+      const todayTotal = sumList(dueToday);
+      const todayHtml = `
+        <div class="rounded-xl border ${dueToday.length > 0 ? 'border-rose-300 bg-rose-50/70 urgent-pulse' : 'border-slate-200 bg-slate-50/50'} p-4 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-extrabold uppercase tracking-wide ${dueToday.length > 0 ? 'text-rose-700' : 'text-slate-500'}">
+                🔴 Vencem Hoje
+              </span>
+              <span class="text-xs font-bold px-2 py-0.5 rounded-full ${dueToday.length > 0 ? 'bg-rose-600 text-white' : 'bg-slate-200 text-slate-600'}">
+                ${dueToday.length} ${dueToday.length === 1 ? 'folha' : 'folhas'}
+              </span>
+            </div>
+            <p class="text-xl font-extrabold ${dueToday.length > 0 ? 'text-rose-900' : 'text-slate-700'} mt-1.5">${formatBRL(todayTotal)}</p>
+          </div>
+          <div class="mt-3 space-y-1.5 max-h-28 overflow-y-auto">
+            ${dueToday.length === 0
+              ? '<p class="text-xs text-slate-400">Nenhum cheque vence hoje.</p>'
+              : dueToday.map(c => `
+                <div class="text-xs bg-white/90 border border-rose-200 rounded-lg px-2.5 py-1.5 flex items-center justify-between gap-2">
+                  <span class="font-semibold text-slate-800 truncate" title="${esc(c.recipient)}">${esc(c.recipient)} <span class="text-slate-400 font-normal">(#${esc(c.number)})</span></span>
+                  <span class="font-bold text-rose-700 whitespace-nowrap">${formatBRL(c.amount)}</span>
+                </div>
+              `).join('')
+            }
+          </div>
+        </div>
+      `;
+
+      // Card 2: Próximos X Dias
+      const soonTotal = sumList(dueSoon);
+      const soonHtml = `
+        <div class="rounded-xl border ${dueSoon.length > 0 ? 'border-amber-300 bg-amber-50/70' : 'border-slate-200 bg-slate-50/50'} p-4 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-extrabold uppercase tracking-wide ${dueSoon.length > 0 ? 'text-amber-800' : 'text-slate-500'}">
+                🟡 Próximos ${advanceDays} Dias
+              </span>
+              <span class="text-xs font-bold px-2 py-0.5 rounded-full ${dueSoon.length > 0 ? 'bg-amber-500 text-white' : 'bg-slate-200 text-slate-600'}">
+                ${dueSoon.length} ${dueSoon.length === 1 ? 'folha' : 'folhas'}
+              </span>
+            </div>
+            <p class="text-xl font-extrabold ${dueSoon.length > 0 ? 'text-amber-950' : 'text-slate-700'} mt-1.5">${formatBRL(soonTotal)}</p>
+          </div>
+          <div class="mt-3 space-y-1.5 max-h-28 overflow-y-auto">
+            ${dueSoon.length === 0
+              ? `<p class="text-xs text-slate-400">Nenhum vencimento nos próximos ${advanceDays} dias.</p>`
+              : dueSoon.map(c => `
+                <div class="text-xs bg-white/90 border border-amber-200 rounded-lg px-2.5 py-1.5 flex items-center justify-between gap-2">
+                  <span class="font-semibold text-slate-800 truncate">${formatDateBR(c.date).slice(0,5)} • ${esc(c.recipient)}</span>
+                  <span class="font-bold text-amber-800 whitespace-nowrap">${formatBRL(c.amount)}</span>
+                </div>
+              `).join('')
+            }
+          </div>
+        </div>
+      `;
+
+      // Card 3: Vencidos / Atrasados em Aberto
+      const overdueTotal = sumList(overdue);
+      const overdueHtml = `
+        <div class="rounded-xl border ${overdue.length > 0 ? 'border-orange-300 bg-orange-50/70' : 'border-slate-200 bg-slate-50/50'} p-4 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-extrabold uppercase tracking-wide ${overdue.length > 0 ? 'text-orange-800' : 'text-slate-500'}">
+                🟠 Vencidos (Aguardando Baixa)
+              </span>
+              <span class="text-xs font-bold px-2 py-0.5 rounded-full ${overdue.length > 0 ? 'bg-orange-600 text-white' : 'bg-slate-200 text-slate-600'}">
+                ${overdue.length} ${overdue.length === 1 ? 'folha' : 'folhas'}
+              </span>
+            </div>
+            <p class="text-xl font-extrabold ${overdue.length > 0 ? 'text-orange-950' : 'text-slate-700'} mt-1.5">${formatBRL(overdueTotal)}</p>
+          </div>
+          <div class="mt-3 space-y-1.5 max-h-28 overflow-y-auto">
+            ${overdue.length === 0
+              ? '<p class="text-xs text-slate-400">Nenhuma folha vencida pendente de baixa.</p>'
+              : overdue.map(c => `
+                <div class="text-xs bg-white/90 border border-orange-200 rounded-lg px-2.5 py-1.5 flex items-center justify-between gap-2">
+                  <span class="font-semibold text-slate-800 truncate">${formatDateBR(c.date).slice(0,5)} • ${esc(c.recipient)}</span>
+                  <span class="font-bold text-orange-800 whitespace-nowrap">${formatBRL(c.amount)}</span>
+                </div>
+              `).join('')
+            }
+          </div>
+        </div>
+      `;
+
+      container.innerHTML = todayHtml + soonHtml + overdueHtml;
+    }
+
+    function buildReminderMessage() {
+      const { overdue, dueToday, dueSoon, advanceDays } = getUpcomingAlertsData();
+      const sumList = (arr) => arr.reduce((acc, item) => acc + Number(item.amount), 0);
+
+      let lines = [];
+      lines.push(`*📋 LEMBRETE FINANCEIRO / CHEQUES - ${formatDateBR(getTodayISO())}*`);
+      lines.push('');
+
+      if (overdue.length > 0) {
+        lines.push(`🟠 *VENCIDOS EM ABERTO (${formatBRL(sumList(overdue))}):*`);
+        overdue.forEach(c => {
+          lines.push(`• ${formatDateBR(c.date)} | ${c.kind === 'Cheque' ? 'Ch. ' + c.number + ' (' + c.bank + ')' : 'Parc. ' + c.number} - ${c.recipient}: *${formatBRL(c.amount)}*`);
+        });
+        lines.push('');
+      }
+
+      if (dueToday.length > 0) {
+        lines.push(`🔴 *VENCEM HOJE (${formatBRL(sumList(dueToday))}):*`);
+        dueToday.forEach(c => {
+          lines.push(`• ${c.kind === 'Cheque' ? 'Ch. ' + c.number + ' (' + c.bank + ')' : 'Parc. ' + c.number} - ${c.recipient}: *${formatBRL(c.amount)}*`);
+        });
+        lines.push('');
+      }
+
+      if (dueSoon.length > 0) {
+        lines.push(`🟡 *PRÓXIMOS ${advanceDays} DIAS (${formatBRL(sumList(dueSoon))}):*`);
+        dueSoon.forEach(c => {
+          lines.push(`• ${formatDateBR(c.date)} | ${c.kind === 'Cheque' ? 'Ch. ' + c.number + ' (' + c.bank + ')' : 'Parc. ' + c.number} - ${c.recipient}: *${formatBRL(c.amount)}*`);
+        });
+        lines.push('');
+      }
+
+      const grandTotal = sumList(overdue) + sumList(dueToday) + sumList(dueSoon);
+      if (grandTotal === 0) {
+        lines.push(`✅ Nenhum compromisso vence hoje ou nos próximos ${advanceDays} dias.`);
+      } else {
+        lines.push(`💰 *TOTAL A PROVISIONAR:* *${formatBRL(grandTotal)}*`);
+      }
+
+      return lines.join('\n');
+    }
+
+    function sendWhatsAppReminder() {
+      const text = encodeURIComponent(buildReminderMessage());
+      window.open(`https://wa.me/?text=${text}`, '_blank');
+    }
+
+    function copyReminderText() {
+      const text = buildReminderMessage();
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      document.body.appendChild(textarea);
+      textarea.select();
+      try {
+        document.execCommand('copy');
+        showToast('Resumo copiado para a área de transferência!');
+      } catch (e) {
+        showToast('Não foi possível copiar o texto.', 'error');
+      }
+      document.body.removeChild(textarea);
+    }
+
+    let editingCheckId = null;
+
+    function updateNotifLabel() {
+      const on = !!appState.settings.alertsOn;
+      const l = document.getElementById('notifLabel');
+      if (l) l.textContent = on ? 'Alertas Ativos' : 'Ativar Alertas';
+      const b = document.getElementById('btnNotif');
+      if (b) b.title = on ? 'Clique para desativar os alertas' : 'Ativar notificações no dispositivo';
+    }
+
+    function beep() {
+      try {
+        const AC = window.AudioContext || window.webkitAudioContext;
+        if (!AC) return;
+        if (!beep.ctx) beep.ctx = new AC();
+        const ctx = beep.ctx;
+        if (ctx.state === 'suspended') ctx.resume();
+        const o = ctx.createOscillator(), g = ctx.createGain();
+        o.type = 'sine'; o.frequency.value = 660; g.gain.value = 0.04;
+        o.connect(g); g.connect(ctx.destination);
+        o.start(); o.stop(ctx.currentTime + 0.25);
+      } catch (e) {}
+    }
+
+    function notifyBrowser(title, body) {
+      try {
+        if ('Notification' in window && Notification.permission === 'granted') {
+          // No celular (app instalado) a notificação precisa sair pelo service worker
+          if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+            navigator.serviceWorker.ready
+              .then(reg => reg.showNotification(title, { body, icon: 'icons/icon-192.png', badge: 'icons/favicon.png', tag: 'gfc-vencimentos' }))
+              .catch(() => {});
+            return true;
+          }
+          new Notification(title, { body });
+          return true;
+        }
+      } catch (e) {}
+      return false;
+    }
+
+    function requestBrowserNotification() {
+      if (appState.settings.alertsOn) {
+        appState.settings.alertsOn = false;
+        saveState(); updateNotifLabel();
+        showToast('Alertas desativados.', 'warning');
+        return;
+      }
+      const activate = () => {
+        appState.settings.alertsOn = true;
+        saveState(); updateNotifLabel(); beep();
+        triggerBrowserAndSoundAlert(true);
+        showToast('Alertas ativados! Funcionam enquanto esta página estiver aberta.');
+      };
+      if (!('Notification' in window)) { activate(); return; }
+      if (Notification.permission === 'granted') { activate(); return; }
+      Notification.requestPermission().then(p => {
+        if (p === 'granted') activate();
+        else showToast('Permissão negada. Libere as notificações nas configurações do navegador.', 'warning');
+      });
+    }
+
+    function triggerBrowserAndSoundAlert(forceTest = false) {
+      if (!appState.settings.alertsOn && !forceTest) return;
+      const { overdue, dueToday, dueSoon } = getUpcomingAlertsData();
+      const urgent = overdue.length + dueToday.length;
+      if (urgent === 0 && !forceTest) return;
+      const key = getTodayISO() + ':' + urgent;
+      if (!forceTest) {
+        try {
+          if (localStorage.getItem('gfc_last_alert') === key) return;
+          localStorage.setItem('gfc_last_alert', key);
+        } catch (e) {}
+      }
+      beep();
+      const body = urgent > 0
+        ? `Atenção: ${dueToday.length} vencendo hoje e ${overdue.length} vencido(s) aguardando baixa.`
+        : `Alertas ativos! ${dueSoon.length} item(ns) nos próximos dias.`;
+      if (!notifyBrowser('Gestão Financeira / Cheque', body)) showToast(body, urgent > 0 ? 'warning' : 'success');
+    }
+
+    // =========================================================================
+    // EDIÇÃO DE CHEQUE
+    // =========================================================================
+    function editCheck(id) {
+      const c = appState.checks.find(x => x.id === id);
+      if (!c) return;
+      editingCheckId = id;
+      switchTab('checks');
+      const set = (k, v) => { document.getElementById(k).value = v ?? ''; };
+      set('checkRecipient', c.recipient); set('checkBank', c.bank); set('checkNumber', c.number);
+      set('checkDate', c.date); set('checkAmount', c.amount); set('checkNote', c.note);
+      set('checkType', c.type || 'fornecedor');
+      toggleCheckContractSelect();
+      if (c.contractId) set('checkContractId', c.contractId);
+      document.getElementById('checkBatchMode').checked = false;
+      toggleBatchFields();
+      document.getElementById('saveCheckLabel').textContent = 'Salvar Alterações';
+      document.getElementById('btnCancelEdit').classList.remove('hidden');
+      document.getElementById('checkForm').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      showToast('Editando cheque: altere os campos e salve.', 'warning');
+    }
+
+    function cancelCheckEdit() {
+      editingCheckId = null;
+      document.getElementById('checkForm').reset();
+      document.getElementById('checkDate').value = getTodayISO();
+      document.getElementById('batchFields').classList.add('hidden');
+      document.getElementById('checkContractWrapper').classList.add('hidden');
+      document.getElementById('saveCheckLabel').textContent = 'Salvar Cheque';
+      document.getElementById('btnCancelEdit').classList.add('hidden');
+    }
+
+    // =========================================================================
+    // ABA 2: CONTRATOS A JUROS E CONTROLE MENSAL
+    // =========================================================================
+    // "150 mil em 10 cheques": calcula amortização mensal, total de meses e dados das folhas
+    function contractCalc() {
+      const val = id => document.getElementById(id).value;
+      const principal = parseFloat(val('contractPrincipal')) || 0;
+      const start = val('contractStartDate'), amortStart = val('contractAmortizationStart');
+      const parcels = parseInt(val('contractParcels'), 10) || 0;
+      if (!principal || !start || !amortStart || !parcels) return null;
+      const [y1, m1] = start.split('-').map(Number), [y2, m2] = amortStart.split('-').map(Number);
+      const grace = Math.max(0, (y2 - y1) * 12 + (m2 - m1));
+      const day = Math.min(Number(start.slice(8)), new Date(y2, m2, 0).getDate());
+      return {
+        parcels, grace, total: grace + parcels,
+        amort: Math.ceil((principal / parcels) * 100 - 1e-9) / 100,
+        firstAmortDate: `${amortStart}-${String(day).padStart(2, '0')}`
+      };
+    }
+
+    function autoFillContract() {
+      const c = contractCalc();
+      if (c) {
+        document.getElementById('contractTotalMonths').value = c.total;
+        document.getElementById('contractPlannedAmort').value = c.amort;
+      }
+      prefillContractChecks();
+      updateContractPreview();
+    }
+
+    function prefillContractChecks() {
+      if (!document.getElementById('contractGenChecks').checked) return;
+      const c = contractCalc();
+      if (!c) return;
+      document.getElementById('ccQty').value = c.parcels;
+      document.getElementById('ccAmount').value = c.amort.toFixed(2);
+      document.getElementById('ccFirstDate').value = c.firstAmortDate;
+    }
+
+    function toggleContractChecksFields() {
+      const checked = document.getElementById('contractGenChecks').checked;
+      const box = document.getElementById('contractChecksFields');
+      if (checked) {
+        box.classList.remove('hidden');
+        prefillContractChecks();
+      } else {
+        box.classList.add('hidden');
+      }
+    }
+
+    let editingContractId = null;
+
+    function editContract(id) {
+      const ctr = appState.contracts.find(c => c.id === id);
+      if (!ctr) return;
+      editingContractId = id;
+      switchTab('contracts');
+      const set = (k, v) => { const el = document.getElementById(k); if (el) el.value = v ?? ''; };
+      set('contractCreditor', ctr.creditor);
+      set('contractPrincipal', ctr.originalPrincipal);
+      set('contractRate', ctr.monthlyRate);
+      set('contractStartDate', ctr.startDate || (ctr.schedule[0]?.dueDate || getTodayISO()));
+      set('contractAmortizationStart', ctr.amortizationStart || getTodayISO().slice(0, 7));
+      set('contractTotalMonths', Math.max(1, (ctr.schedule || []).length || 1));
+      set('contractPlannedAmort', ctr.plannedAmort || 0);
+      set('contractNotes', ctr.notes || '');
+
+      document.getElementById('contractGenChecks').checked = false;
+      document.getElementById('contractChecksFields').classList.add('hidden');
+      document.getElementById('contractEditBanner').classList.remove('hidden');
+      document.getElementById('btnCancelContractEdit').classList.remove('hidden');
+      document.getElementById('saveContractLabel').textContent = 'Salvar Alterações do Contrato';
+      updateContractPreview();
+      document.getElementById('contractForm').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      showToast('Editando contrato: ajuste os campos e salve.', 'warning');
+    }
+
+    function cancelContractEdit() {
+      editingContractId = null;
+      document.getElementById('contractForm').reset();
+      document.getElementById('contractStartDate').value = getTodayISO();
+      document.getElementById('contractEditBanner').classList.add('hidden');
+      document.getElementById('btnCancelContractEdit').classList.add('hidden');
+      document.getElementById('saveContractLabel').textContent = 'Criar Contrato e Cronograma';
+      updateContractPreview();
+    }
+
+    function editScheduleMonth(contractId, scheduleId) {
+      const ctr = appState.contracts.find(c => c.id === contractId);
+      if (!ctr) return;
+      const item = (ctr.schedule || []).find(s => s.id === scheduleId);
+      if (!item) return;
+
+      const curDue = prompt('Data de vencimento (AAAA-MM-DD):', item.dueDate || '');
+      if (curDue === null) return;
+      const dueDate = curDue.trim() || item.dueDate;
+
+      const curAmort = prompt('Amortização prevista deste mês (R$):', String(Number(item.amortExpected || 0)));
+      if (curAmort === null) return;
+      const amortVal = Math.max(0, parseFloat(String(curAmort).replace(',', '.')) || 0);
+
+      const curNote = prompt('Observação do mês (opcional):', item.note || '');
+      if (curNote === null) return;
+
+      item.dueDate = dueDate;
+      item.monthRef = dueDate.slice(0, 7);
+      item.amortExpected = amortVal;
+      item.note = curNote.trim();
+
+      if (item.status === 'pago') {
+        const curPaidAmort = prompt('Amortização paga neste mês (R$):', String(Number(item.amortPaid || amortVal)));
+        if (curPaidAmort !== null) {
+          item.amortPaid = Math.max(0, parseFloat(String(curPaidAmort).replace(',', '.')) || 0);
+        }
+      }
+
+      recalculateContractSchedule(ctr);
+      saveState();
+      renderAll();
+      showToast(`Mês ${formatMonthBR(item.monthRef)} atualizado!`);
+    }
+
+    function saveContract(event) {
+      event.preventDefault();
+
+      const creditor = document.getElementById('contractCreditor').value.trim();
+      const principal = parseFloat(document.getElementById('contractPrincipal').value);
+      const rate = parseFloat(document.getElementById('contractRate').value);
+      const startDate = document.getElementById('contractStartDate').value;
+      const amortizationStart = document.getElementById('contractAmortizationStart').value;
+      const totalMonths = Math.max(1, parseInt(document.getElementById('contractTotalMonths').value, 10) || 6);
+      const plannedAmort = parseFloat(document.getElementById('contractPlannedAmort').value) || 0;
+      const notes = document.getElementById('contractNotes').value.trim();
+
+      if (editingContractId) {
+        const existing = appState.contracts.find(c => c.id === editingContractId);
+        if (existing) {
+          const paidByMonth = {};
+          (existing.schedule || []).filter(s => s.status === 'pago').forEach(s => {
+            paidByMonth[s.monthRef] = { ...s };
+          });
+
+          const rebuilt = buildScheduleItems({
+            principal,
+            rate,
+            firstDueDate: startDate,
+            amortizationStart,
+            totalMonths,
+            plannedAmort
+          });
+
+          rebuilt.forEach(item => {
+            if (paidByMonth[item.monthRef]) {
+              const p = paidByMonth[item.monthRef];
+              item.status = 'pago';
+              item.paidDate = p.paidDate;
+              item.interestPaid = p.interestPaid;
+              item.amortPaid = p.amortPaid;
+              item.note = p.note || item.note;
+              item.redeemedCheckId = p.redeemedCheckId || '';
+              delete paidByMonth[item.monthRef];
+            }
+          });
+
+          Object.values(paidByMonth).forEach(p => rebuilt.push(p));
+
+          existing.creditor = creditor;
+          existing.originalPrincipal = principal;
+          existing.monthlyRate = rate;
+          existing.startDate = startDate;
+          existing.amortizationStart = amortizationStart;
+          existing.plannedAmort = plannedAmort;
+          existing.notes = notes;
+          existing.schedule = rebuilt;
+          recalculateContractSchedule(existing);
+
+          saveState();
+          cancelContractEdit();
+          renderAll();
+          showToast('Contrato atualizado e cronograma recalculado!');
+          return;
+        }
+      }
+
+      const contractId = 'ctr_' + Date.now();
+      const schedule = buildScheduleItems({
+        principal,
+        rate,
+        firstDueDate: startDate,
+        amortizationStart,
+        totalMonths,
+        plannedAmort
+      });
+
+      appState.contracts.unshift({
+        id: contractId,
+        creditor,
+        originalPrincipal: principal,
+        currentBalance: principal,
+        monthlyRate: rate,
+        startDate,
+        amortizationStart,
+        plannedAmort,
+        notes,
+        schedule
+      });
+
+      // Gerar folhas vinculadas se solicitado
+      if (document.getElementById('contractGenChecks').checked) {
+        const bank = document.getElementById('ccBank').value.trim() || 'Banco Principal';
+        const startNum = document.getElementById('ccStartNum').value.trim() || '000001';
+        const qty = Math.max(1, parseInt(document.getElementById('ccQty').value, 10) || 1);
+        const firstDate = document.getElementById('ccFirstDate').value || startDate;
+        const amount = parseFloat(document.getElementById('ccAmount').value) || plannedAmort || (principal * (rate / 100));
+
+        for (let i = 0; i < qty; i++) {
+          appState.checks.push({
+            id: 'chk_ctr_' + Date.now() + '_' + i,
+            type: 'contrato',
+            contractId,
+            recipient: creditor,
+            bank,
+            number: i === 0 ? startNum : incrementCheckNumber(startNum, i),
+            date: addMonthsISO(firstDate, i),
+            amount,
+            status: 'aberto',
+            note: `Folha ${i + 1}/${qty} - Contrato ${creditor}`
+          });
+        }
+      }
+
+      saveState();
+      document.getElementById('contractForm').reset();
+      document.getElementById('contractChecksFields').classList.add('hidden');
+      document.getElementById('contractStartDate').value = getTodayISO();
+      updateContractPreview();
+      renderAll();
+      showToast('Contrato e cronograma mensal gerados com sucesso!');
+    }
+
+    function addNextMonthToContract(contractId) {
+      const ctr = appState.contracts.find(c => c.id === contractId);
+      if (!ctr) return;
+
+      const lastItem = ctr.schedule[ctr.schedule.length - 1];
+      const baseDay = Number((ctr.startDate || getTodayISO()).slice(8));
+      let nextDueDate = getTodayISO();
+      if (lastItem) {
+        const [ny, nm] = addMonthsISO(lastItem.dueDate.slice(0, 8) + '01', 1).split('-').map(Number);
+        const ld = new Date(ny, nm, 0).getDate();
+        nextDueDate = `${ny}-${String(nm).padStart(2, '0')}-${String(Math.min(baseDay, ld)).padStart(2, '0')}`;
+      }
+      const nextMonthRef = nextDueDate.slice(0, 7);
+      const isGrace = nextMonthRef < ctr.amortizationStart;
+
+      ctr.schedule.push({
+        id: 'sch_' + Date.now(),
+        monthRef: nextMonthRef,
+        dueDate: nextDueDate,
+        typeLabel: isGrace ? 'Só Juros' : 'Amortização + Juros',
+        interestExpected: 0,
+        amortExpected: 0,
+        status: 'pendente',
+        paidDate: '',
+        interestPaid: 0,
+        amortPaid: 0,
+        note: ''
+      });
+
+      recalculateContractSchedule(ctr);
+      saveState();
+      renderAll();
+      showToast(`Mês ${formatMonthBR(nextMonthRef)} adicionado ao cronograma!`);
+    }
+
+    function undoSchedulePayment(contractId, scheduleId) {
+      const ctr = appState.contracts.find(c => c.id === contractId);
+      if (!ctr) return;
+      const item = ctr.schedule.find(s => s.id === scheduleId);
+      if (!item) return;
+
+      item.status = 'pendente';
+      item.paidDate = '';
+      item.interestPaid = 0;
+      item.amortPaid = 0;
+      item.note = '';
+      let reopened = '';
+      if (item.redeemedCheckId) {
+        const k = appState.checks.find(x => x.id === item.redeemedCheckId);
+        if (k && k.status === 'resgatado') { k.status = 'aberto'; reopened = ' O cheque vinculado voltou para Em Aberto.'; }
+        item.redeemedCheckId = '';
+      }
+
+      recalculateContractSchedule(ctr);
+      saveState();
+      renderAll();
+      showToast(`Pagamento de ${formatMonthBR(item.monthRef)} estornado para Pendente.${reopened}`, 'warning');
+    }
+
+    function deleteContract(id) {
+      if (!confirm('Excluir este contrato e todo o cronograma? As folhas vinculadas ficam como Fornecedor.')) return;
+      appState.contracts = appState.contracts.filter(c => c.id !== id);
+      appState.checks.forEach(chk => {
+        if (chk.contractId === id) {
+          chk.contractId = '';
+          chk.type = 'fornecedor';
+        }
+      });
+      saveState();
+      renderAll();
+      showToast('Contrato removido.', 'warning');
+    }
+
+    function updateContractPreview() {
+      const el = document.getElementById('contractPreview');
+      if (!el) return;
+      const val = id => document.getElementById(id).value;
+      const principal = parseFloat(val('contractPrincipal')) || 0;
+      const start = val('contractStartDate'), amortStart = val('contractAmortizationStart');
+      const total = parseInt(val('contractTotalMonths'), 10) || 0;
+      const planned = parseFloat(val('contractPlannedAmort')) || 0;
+      if (!principal || !start || !amortStart || !total) { el.classList.add('hidden'); return; }
+      const [y1, m1] = start.split('-').map(Number), [y2, m2] = amortStart.split('-').map(Number);
+      const grace = Math.max(0, (y2 - y1) * 12 + (m2 - m1));
+      const amortMonths = Math.max(0, total - grace);
+      const amortTotal = Math.min(principal, amortMonths * planned);
+      const left = principal - amortTotal;
+      const needed = planned > 0 ? grace + Math.ceil(principal / planned - 1e-9) : 0;
+      const ok = left <= 0.005 || planned <= 0;
+      el.className = 'sm:col-span-2 lg:col-span-3 text-xs rounded-xl p-3 border ' + (ok ? 'bg-emerald-50 border-emerald-200 text-emerald-900' : 'bg-amber-50 border-amber-200 text-amber-900');
+      el.innerHTML = `<b>${total} meses</b> = ${Math.min(grace, total)} só juros + ${amortMonths} com amortização. Principal amortizado: <b>${formatBRL(amortTotal)}</b> de ${formatBRL(principal)}.`
+        + (ok ? (planned > 0 ? ' ✓ Quita no último mês.' : '')
+              : ` <b>Sobram ${formatBRL(left)} sem amortizar.</b> <button type="button" onclick="document.getElementById('contractTotalMonths').value=${needed};updateContractPreview()" class="ml-1 px-2 py-1 rounded-lg bg-amber-600 text-white font-bold">Usar ${needed} meses para quitar</button>`);
+    }
+
+    function trimEmptyMonths(ctrId) {
+      const ctr = appState.contracts.find(c => c.id === ctrId);
+      if (!ctr) return;
+      const ids = new Set(interestRows(ctr).filter(r => r.empty).map(r => r.s.id));
+      if (!ids.size) return;
+      ctr.schedule = ctr.schedule.filter(x => !ids.has(x.id));
+      recalculateContractSchedule(ctr);
+      saveState(); renderAll();
+      showToast(`${ids.size} mês(es) zerado(s) removido(s).`);
+    }
+
+    function completeScheduleToPayoff(ctrId) {
+      const ctr = appState.contracts.find(c => c.id === ctrId);
+      if (!ctr) return;
+      if (!(Number(ctr.plannedAmort) > 0)) { showToast('Defina uma amortização mensal maior que zero.', 'warning'); return; }
+      let guard = 0, added = 0;
+      const remaining = () => { const r = interestRows(ctr); return r.length ? r[r.length - 1].after : Number(ctr.originalPrincipal); };
+      while (remaining() > 0.005 && guard++ < 60) { addNextMonthToContract(ctrId); added++; }
+      showToast(`${added} mês(es) adicionado(s). Cronograma agora quita o contrato.`);
+    }
+
+    // ---- JUROS MÊS A MÊS (visão só de juros, separada do principal) ----
+    function interestRows(ctr) {
+      recalculateContractSchedule(ctr);
+      let bal = Number(ctr.originalPrincipal), acc = 0;
+      return ctr.schedule.map(s => {
+        const paid = s.status === 'pago';
+        const juros = paid ? Number(s.interestPaid || 0) : Number(s.interestExpected || 0);
+        const amort = paid ? Number(s.amortPaid || 0) : Number(s.amortExpected || 0);
+        acc += juros;
+        const empty = !paid && bal <= 0.005 && juros <= 0.005;
+        const row = { s, paid, empty, base: bal, juros, acc, late: !paid && !empty && diffDaysFromToday(s.dueDate) < 0 };
+        bal = Math.max(0, r2(bal - amort));
+        row.after = bal;
+        return row;
+      });
+    }
+
+    function renderInterestPanel() {
+      const el = document.getElementById('interestPanel');
+      if (!el) return;
+      el.innerHTML = appState.contracts.map(ctr => {
+        const rows = interestRows(ctr);
+        const sum = list => list.reduce((a, r) => a + r.juros, 0);
+        const emptyRows = rows.filter(r => r.empty), liveRows = rows.filter(r => !r.empty);
+        const pago = sum(rows.filter(r => r.paid)), aPagar = sum(rows.filter(r => !r.paid)), total = pago + aPagar;
+        const chip = (t, v, c) => `<div class="px-3 py-1.5 rounded-lg ${c}"><div class="text-[10px] font-bold uppercase opacity-70">${t}</div><div class="text-sm font-extrabold">${formatBRL(v)}</div></div>`;
+        return `
+          <div class="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden min-w-0 max-w-full">
+            <div class="p-4 flex flex-wrap items-center justify-between gap-3 border-b border-slate-100">
+              <div>
+                <h4 class="font-extrabold text-slate-900">Juros mês a mês</h4>
+                <p class="text-xs text-slate-500">${esc(ctr.creditor)} · ${Number(ctr.monthlyRate)}% ao mês sobre o saldo devedor</p>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                ${chip('Juros pagos', pago, 'bg-emerald-50 text-emerald-800')}
+                ${chip('Juros a pagar', aPagar, 'bg-amber-50 text-amber-800')}
+                ${chip('Total de juros', total, 'bg-slate-100 text-slate-800')}
+                <button onclick="copyInterestSummary('${ctr.id}')" class="px-3 py-1.5 rounded-lg border border-slate-300 hover:bg-slate-50 text-xs font-bold text-slate-700">Copiar</button>
+              </div>
+            </div>
+            ${emptyRows.length ? `
+            <div class="mx-4 mt-3 mb-1 p-3 rounded-xl bg-sky-50 border border-sky-200 text-sky-900 text-xs flex flex-wrap items-center justify-between gap-2">
+              <span>O principal quita em <b>${liveRows.length ? formatMonthBR(liveRows[liveRows.length - 1].s.monthRef) : '—'}</b>. Os ${emptyRows.length} mês(es) seguintes estão zerados (R$ 0,00).</span>
+              <button onclick="trimEmptyMonths('${ctr.id}')" class="px-3 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-700 text-white font-bold">Remover meses zerados</button>
+            </div>` : ''}
+            ${(rows.length && rows[rows.length - 1].after > 0.005 && Number(ctr.plannedAmort) > 0) ? `
+            <div class="mx-4 mt-3 mb-1 p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs flex flex-wrap items-center justify-between gap-2">
+              <span><b>Atenção:</b> o cronograma termina em ${formatMonthBR(rows[rows.length - 1].s.monthRef)} com <b>${formatBRL(rows[rows.length - 1].after)}</b> de principal ainda em aberto. Faltam meses para quitar.</span>
+              <button onclick="completeScheduleToPayoff('${ctr.id}')" class="px-3 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-700 text-white font-bold">Adicionar meses até quitar</button>
+            </div>` : ''}
+            <!-- Visualização Mobile (sem arrastar para o lado) -->
+            <div class="md:hidden divide-y divide-slate-100">
+              ${rows.map(r => {
+                const badgeClass = r.paid ? 'bg-emerald-100 text-emerald-800' : r.empty ? 'bg-sky-100 text-sky-800' : r.late ? 'bg-red-100 text-red-800' : 'bg-slate-100 text-slate-700';
+                const badgeText = r.paid ? 'Pago' : r.empty ? 'Quitado' : r.late ? 'Vencido' : 'Previsto';
+                return `
+                  <div class="p-3.5 ${r.paid ? 'bg-emerald-50/40' : 'bg-white'} space-y-2">
+                    <div class="flex items-center justify-between gap-2">
+                      <div>
+                        <span class="font-extrabold text-slate-900 text-sm">${formatMonthBR(r.s.monthRef)}</span>
+                        <span class="text-xs text-slate-500 ml-1.5">• Venc. ${formatDateBR(r.s.dueDate)}</span>
+                      </div>
+                      <span class="px-2 py-0.5 rounded-full text-[11px] font-bold shrink-0 ${badgeClass}">${badgeText}</span>
+                    </div>
+                    <div class="grid grid-cols-3 gap-2 text-xs bg-slate-50 rounded-xl p-2.5 border border-slate-100">
+                      <div>
+                        <span class="block text-[10px] text-slate-500 uppercase font-semibold">Saldo</span>
+                        <span class="font-semibold text-slate-700">${formatBRL(r.base)}</span>
+                      </div>
+                      <div>
+                        <span class="block text-[10px] text-slate-500 uppercase font-semibold">Juros Mês</span>
+                        <span class="font-extrabold text-rose-700">${formatBRL(r.juros)}</span>
+                      </div>
+                      <div class="text-right">
+                        <span class="block text-[10px] text-slate-500 uppercase font-semibold">Acumulado</span>
+                        <span class="font-semibold text-slate-700">${formatBRL(r.acc)}</span>
+                      </div>
+                    </div>
+                  </div>
+                `;
+              }).join('')}
+              <div class="p-3.5 bg-slate-50 border-t-2 border-slate-200 flex items-center justify-between text-xs font-extrabold">
+                <span class="text-slate-700 uppercase">Total de juros do contrato</span>
+                <span class="text-sm text-rose-700">${formatBRL(total)}</span>
+              </div>
+            </div>
+
+            <!-- Visualização Desktop (Tabela Completa) -->
+            <div class="hidden md:block w-full max-w-full min-w-0 overflow-x-auto">
+              <table class="w-full text-sm whitespace-nowrap">
+                <thead><tr class="text-left text-[11px] uppercase text-slate-500 bg-slate-50">
+                  <th class="px-4 py-2">Mês</th><th class="px-2 py-2">Vencimento</th><th class="px-2 py-2 text-right">Saldo devedor</th>
+                  <th class="px-2 py-2 text-right">Juros do mês</th><th class="px-2 py-2 text-right">Juros acumulados</th><th class="px-4 py-2 text-center">Situação</th>
+                </tr></thead>
+                <tbody>
+                  ${rows.map(r => `
+                    <tr class="border-t border-slate-100 ${r.paid ? 'bg-emerald-50/50' : ''}">
+                      <td class="px-4 py-2 font-bold">${formatMonthBR(r.s.monthRef)}</td>
+                      <td class="px-2 py-2 text-slate-600">${formatDateBR(r.s.dueDate)}</td>
+                      <td class="px-2 py-2 text-right text-slate-600">${formatBRL(r.base)}</td>
+                      <td class="px-2 py-2 text-right font-extrabold text-rose-700">${formatBRL(r.juros)}</td>
+                      <td class="px-2 py-2 text-right text-slate-600">${formatBRL(r.acc)}</td>
+                      <td class="px-4 py-2 text-center"><span class="px-2 py-0.5 rounded-full text-[11px] font-bold ${r.paid ? 'bg-emerald-100 text-emerald-800' : r.empty ? 'bg-sky-100 text-sky-800' : r.late ? 'bg-red-100 text-red-800' : 'bg-slate-100 text-slate-700'}">${r.paid ? 'Pago' : r.empty ? 'Quitado' : r.late ? 'Vencido' : 'Previsto'}</span></td>
+                    </tr>`).join('')}
+                </tbody>
+                <tfoot><tr class="border-t-2 border-slate-300 bg-slate-50 font-extrabold">
+                  <td class="px-4 py-2" colspan="3">Total de juros do contrato</td>
+                  <td class="px-2 py-2 text-right text-rose-700">${formatBRL(total)}</td><td colspan="2"></td>
+                </tr></tfoot>
+              </table>
+            </div>
+          </div>`;
+      }).join('');
+    }
+
+    function copyInterestSummary(ctrId) {
+      const ctr = appState.contracts.find(c => c.id === ctrId);
+      if (!ctr) return;
+      const rows = interestRows(ctr);
+      const total = rows.reduce((a, r) => a + r.juros, 0);
+      const text = [`*Juros mês a mês – ${ctr.creditor} (${ctr.monthlyRate}% a.m.)*`, '',
+        ...rows.map(r => `${formatMonthBR(r.s.monthRef)} (venc. ${formatDateBR(r.s.dueDate)}): ${formatBRL(r.juros)} sobre saldo de ${formatBRL(r.base)} – ${r.paid ? 'pago' : 'previsto'}`),
+        '', `*Total de juros: ${formatBRL(total)}*`].join('\n');
+      const ta = document.createElement('textarea');
+      ta.value = text; document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); showToast('Juros mês a mês copiados!'); } catch (e) { showToast('Não foi possível copiar.', 'error'); }
+      document.body.removeChild(ta);
+    }
+
+    function renderContracts() {
+      const container = document.getElementById('contractsList');
+      const currentMonthISO = getTodayISO().slice(0, 7);
+
+      if (appState.contracts.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-12 bg-white border border-slate-200 rounded-2xl text-slate-400 text-sm">
+            Nenhum contrato com juros cadastrado no momento.
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = appState.contracts.map(ctr => {
+        recalculateContractSchedule(ctr);
+
+        const balance = Number(ctr.currentBalance);
+        const rate = Number(ctr.monthlyRate);
+        const monthlyInterest = balance * (rate / 100);
+        const isPaidOff = balance <= 0;
+        const isGracePeriod = !isPaidOff && currentMonthISO < ctr.amortizationStart;
+
+        const linkedChecks = appState.checks.filter(c => c.contractId === ctr.id);
+        const openLinkedChecks = linkedChecks.filter(c => c.status === 'aberto');
+
+        const paidItems = ctr.schedule.filter(s => s.status === 'pago');
+        const totalInterestPaid = paidItems.reduce((s, p) => s + Number(p.interestPaid), 0);
+        const totalAmortized = paidItems.reduce((s, p) => s + Number(p.amortPaid), 0);
+
+        const emptyIds = new Set(interestRows(ctr).filter(r => r.empty).map(r => r.s.id));
+        const progressPct = Math.min(100, Math.round(((ctr.originalPrincipal - balance) / ctr.originalPrincipal) * 100));
+
+        return `
+          <div class="bg-white border ${isPaidOff ? 'border-emerald-300' : 'border-slate-200'} rounded-2xl shadow-sm overflow-hidden min-w-0 max-w-full">
+            <!-- Topo do Card do Contrato -->
+            <div class="p-5 border-b border-slate-100 flex flex-wrap items-start justify-between gap-4">
+              <div class="space-y-1">
+                <div class="flex items-center gap-2.5 flex-wrap">
+                  <h4 class="text-lg font-extrabold text-slate-900">${esc(ctr.creditor)}</h4>
+                  ${isPaidOff
+                    ? '<span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">Contrato Quitado</span>'
+                    : isGracePeriod
+                      ? `<span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-800">Só Juros até ${formatMonthBR(addMonthsISO(ctr.amortizationStart + '-01', -1).slice(0, 7))} · amortiza desde ${formatMonthBR(ctr.amortizationStart)}</span>`
+                      : `<span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-indigo-100 text-indigo-800">Em Amortização (Desde ${formatMonthBR(ctr.amortizationStart)})</span>`
+                  }
+                </div>
+                <p class="text-xs text-slate-500">
+                  Taxa: <strong>${rate.toLocaleString('pt-BR')}% a.m.</strong> • Capital Original: <strong>${formatBRL(ctr.originalPrincipal)}</strong> • Meses pagos: <strong>${paidItems.length} de ${ctr.schedule.length}</strong>
+                </p>
+                ${ctr.notes ? `<p class="text-xs text-slate-600 italic mt-1">"${esc(ctr.notes)}"</p>` : ''}
+              </div>
+
+              <div class="flex items-center gap-2 flex-wrap">
+                <button onclick="addNextMonthToContract('${ctr.id}')" class="bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold px-3.5 py-2.5 rounded-xl border border-slate-300 transition flex items-center gap-1.5">
+                  <svg class="w-4 h-4 text-indigo-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+                  <span>+ Adicionar Mês</span>
+                </button>
+                <button onclick="editContract('${ctr.id}')" title="Editar contrato" class="px-3 py-2.5 rounded-xl border border-indigo-200 bg-indigo-50/70 hover:bg-indigo-100 text-indigo-700 text-xs font-bold transition inline-flex items-center gap-1">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536M9 13l-1 4 4-1 8.5-8.5a2.5 2.5 0 00-3.536-3.536L9 13z"/></svg>
+                  <span>Editar</span>
+                </button>
+                <button onclick="deleteContract('${ctr.id}')" title="Excluir contrato" class="p-2.5 rounded-xl border border-slate-200 hover:bg-rose-50 text-slate-400 hover:text-rose-600 transition">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Números Principais do Contrato -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x divide-slate-100 bg-slate-50/60">
+              <div class="p-4">
+                <span class="text-[11px] font-semibold uppercase text-slate-500">Saldo Devedor Atual</span>
+                <p class="text-xl font-extrabold text-slate-900 mt-0.5">${formatBRL(balance)}</p>
+                <div class="w-full bg-slate-200 h-1.5 rounded-full mt-2 overflow-hidden">
+                  <div class="bg-emerald-500 h-full" style="width: ${progressPct}%"></div>
+                </div>
+                <span class="text-[10px] text-slate-500 mt-1 block">${progressPct}% do principal abatido</span>
+              </div>
+
+              <div class="p-4">
+                <span class="text-[11px] font-semibold uppercase text-slate-500">Juros Mensal Atual (${rate}%)</span>
+                <p class="text-xl font-extrabold text-rose-600 mt-0.5">${formatBRL(monthlyInterest)}</p>
+                <span class="text-[11px] text-slate-500 mt-1 block">Sobre o saldo devedor atual</span>
+              </div>
+
+              <div class="p-4">
+                <span class="text-[11px] font-semibold uppercase text-slate-500">Total Já Pago</span>
+                <p class="text-sm font-bold text-slate-800 mt-1">Juros: <span class="text-rose-700">${formatBRL(totalInterestPaid)}</span></p>
+                <p class="text-sm font-bold text-slate-800">Principal: <span class="text-emerald-700">${formatBRL(totalAmortized)}</span></p>
+              </div>
+
+              <div class="p-4">
+                <span class="text-[11px] font-semibold uppercase text-slate-500">Folhas de Cheque Vinculadas</span>
+                <p class="text-xl font-extrabold text-indigo-700 mt-0.5">${openLinkedChecks.length} <span class="text-xs font-medium text-slate-500">em aberto (de ${linkedChecks.length})</span></p>
+                <span class="text-[11px] text-slate-500 mt-1 block">Soma em aberto: ${formatBRL(openLinkedChecks.reduce((s, c) => s + Number(c.amount), 0))}</span>
+              </div>
+            </div>
+
+            <!-- CONTROLE MENSAL (MÊS A MÊS COM BOTÃO MARCAR COMO PAGO) -->
+            <div class="p-4 sm:p-5 border-t border-slate-100 space-y-3">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <h5 class="text-xs font-extrabold uppercase tracking-wider text-slate-700 flex items-center gap-2">
+                  <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                  Controle Mensal de Pagamentos (Clique para Marcar como Pago)
+                </h5>
+                <span class="text-[11px] text-slate-500">Ao marcar um mês com amortização, os juros dos meses seguintes são recalculados.</span>
+              </div>
+
+              <!-- Visualização Mobile (todos os dados visíveis sem arrastar para o lado) -->
+              <div class="md:hidden space-y-2.5">
+                ${ctr.schedule.map(sch => {
+                  const isPaid = sch.status === 'pago';
+                  const interestVal = isPaid ? Number(sch.interestPaid) : Number(sch.interestExpected);
+                  const amortVal = isPaid ? Number(sch.amortPaid) : Number(sch.amortExpected);
+                  const totalMonth = interestVal + amortVal;
+                  const diff = diffDaysFromToday(sch.dueDate);
+                  const isEmpty = emptyIds.has(sch.id);
+
+                  let dueAlert = '';
+                  if (!isPaid && !isEmpty) {
+                    if (diff < 0) dueAlert = '<span class="ml-1 text-[10px] font-bold text-rose-600">(Vencido)</span>';
+                    else if (diff === 0) dueAlert = '<span class="ml-1 text-[10px] font-bold text-rose-600">(Hoje)</span>';
+                    else if (diff <= appState.settings.advanceDays) dueAlert = `<span class="ml-1 text-[10px] font-bold text-amber-600">(Em ${diff}d)</span>`;
+                  }
+
+                  const statusBadge = isPaid
+                    ? `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">✓ PAGO ${sch.paidDate ? `(${formatDateBR(sch.paidDate).slice(0,5)})` : ''}</span>`
+                    : isEmpty
+                      ? '<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-sky-100 text-sky-800 border border-sky-200">Quitado</span>'
+                      : '<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-slate-100 text-slate-600 border border-slate-200">Em Aberto</span>';
+
+                  const editMonthBtn = `<button onclick="editScheduleMonth('${ctr.id}', '${sch.id}')" class="py-2 px-3 rounded-xl bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-bold text-xs border border-indigo-200 transition">Editar Mês</button>`;
+                  const actionBtn = isPaid
+                    ? `<div class="flex items-center gap-2">${editMonthBtn}<button onclick="undoSchedulePayment('${ctr.id}', '${sch.id}')" class="flex-1 py-2 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition">Desfazer Pago</button></div>`
+                    : isEmpty
+                      ? editMonthBtn
+                      : `<div class="flex items-center gap-2">${editMonthBtn}<button onclick="openPaymentModal('${ctr.id}', '${sch.id}')" class="flex-1 py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-xs transition inline-flex items-center justify-center gap-1.5">
+                          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                          <span>Marcar como Pago</span>
+                        </button></div>`;
+
+                  return `
+                    <div class="rounded-xl border ${isPaid ? 'border-emerald-200 bg-emerald-50/40' : 'border-slate-200 bg-white'} p-3.5 ${isEmpty ? 'opacity-60' : ''} space-y-2.5">
+                      <div class="flex items-start justify-between gap-2">
+                        <div>
+                          <div class="flex items-center gap-1.5 flex-wrap">
+                            <span class="font-extrabold text-slate-900 text-sm">${formatMonthBR(sch.monthRef)}</span>
+                            <span class="px-2 py-0.5 rounded-md text-[10px] font-semibold ${sch.typeLabel === 'Só Juros' ? 'bg-amber-100 text-amber-900' : 'bg-indigo-100 text-indigo-900'}">${sch.typeLabel}</span>
+                          </div>
+                          <p class="text-xs text-slate-600 mt-0.5">Venc. ${formatDateBR(sch.dueDate)}${dueAlert}</p>
+                        </div>
+                        <div class="shrink-0">${statusBadge}</div>
+                      </div>
+
+                      <div class="grid grid-cols-3 gap-2 bg-slate-50 rounded-xl p-2.5 border border-slate-100 text-xs">
+                        <div>
+                          <span class="block text-[10px] text-slate-500 uppercase font-semibold">Juros</span>
+                          <span class="font-bold text-rose-700">${formatBRL(interestVal)}</span>
+                        </div>
+                        <div>
+                          <span class="block text-[10px] text-slate-500 uppercase font-semibold">Amortiz.</span>
+                          <span class="font-bold text-emerald-700">${formatBRL(amortVal)}</span>
+                        </div>
+                        <div class="text-right">
+                          <span class="block text-[10px] text-slate-500 uppercase font-semibold">Total</span>
+                          <span class="font-extrabold text-slate-900">${formatBRL(totalMonth)}</span>
+                        </div>
+                      </div>
+
+                      ${sch.note ? `<p class="text-[11px] text-slate-500">${esc(sch.note)}</p>` : ''}
+                      ${actionBtn ? `<div>${actionBtn}</div>` : ''}
+                    </div>
+                  `;
+                }).join('')}
+              </div>
+
+              <!-- Visualização Desktop (Tabela Completa) -->
+              <div class="hidden md:block w-full max-w-full min-w-0 overflow-x-auto border border-slate-200 rounded-xl">
+                <table class="w-full text-left border-collapse">
+                  <thead>
+                    <tr class="bg-slate-100/90 border-b border-slate-200 text-[11px] font-bold uppercase tracking-wider text-slate-600">
+                      <th class="py-2.5 px-3.5">Mês Ref.</th>
+                      <th class="py-2.5 px-3.5">Vencimento</th>
+                      <th class="py-2.5 px-3.5">Modalidade</th>
+                      <th class="py-2.5 px-3.5 text-right">Juros</th>
+                      <th class="py-2.5 px-3.5 text-right">Amortização</th>
+                      <th class="py-2.5 px-3.5 text-right">Total do Mês</th>
+                      <th class="py-2.5 px-3.5 text-center">Situação</th>
+                      <th class="py-2.5 px-3.5 text-right">Controle Mensal</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-200 text-xs bg-white">
+                    ${ctr.schedule.map(sch => {
+                      const isPaid = sch.status === 'pago';
+                      const interestVal = isPaid ? Number(sch.interestPaid) : Number(sch.interestExpected);
+                      const amortVal = isPaid ? Number(sch.amortPaid) : Number(sch.amortExpected);
+                      const totalMonth = interestVal + amortVal;
+                      const diff = diffDaysFromToday(sch.dueDate);
+                      const isEmpty = emptyIds.has(sch.id);
+
+                      let dueAlert = '';
+                      if (!isPaid && !isEmpty) {
+                        if (diff < 0) dueAlert = '<span class="ml-1 text-[10px] font-bold text-rose-600">(Vencido)</span>';
+                        else if (diff === 0) dueAlert = '<span class="ml-1 text-[10px] font-bold text-rose-600">(Hoje)</span>';
+                        else if (diff <= appState.settings.advanceDays) dueAlert = `<span class="ml-1 text-[10px] font-bold text-amber-600">(Em ${diff}d)</span>`;
+                      }
+
+                      return `
+                        <tr class="${isPaid ? 'bg-emerald-50/40' : 'hover:bg-slate-50'} ${isEmpty ? 'opacity-50' : ''} transition">
+                          <td class="py-3 px-3.5 font-extrabold text-slate-900 whitespace-nowrap">
+                            ${formatMonthBR(sch.monthRef)}
+                          </td>
+                          <td class="py-3 px-3.5 whitespace-nowrap text-slate-700 font-medium">
+                            ${formatDateBR(sch.dueDate)}${dueAlert}
+                          </td>
+                          <td class="py-3 px-3.5 whitespace-nowrap">
+                            <span class="px-2 py-0.5 rounded-md text-[11px] font-semibold ${
+                              sch.typeLabel === 'Só Juros'
+                                ? 'bg-amber-100/80 text-amber-900'
+                                : 'bg-indigo-100/80 text-indigo-900'
+                            }">
+                              ${sch.typeLabel}
+                            </span>
+                            ${sch.note ? `<div class="text-[11px] text-slate-500 mt-0.5">${esc(sch.note)}</div>` : ''}
+                          </td>
+                          <td class="py-3 px-3.5 text-right whitespace-nowrap font-semibold text-rose-700">
+                            ${formatBRL(interestVal)}
+                          </td>
+                          <td class="py-3 px-3.5 text-right whitespace-nowrap font-semibold text-emerald-700">
+                            ${formatBRL(amortVal)}
+                          </td>
+                          <td class="py-3 px-3.5 text-right whitespace-nowrap font-extrabold text-slate-900">
+                            ${formatBRL(totalMonth)}
+                          </td>
+                          <td class="py-3 px-3.5 text-center whitespace-nowrap">
+                            ${isPaid
+                              ? `<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">
+                                  ✓ PAGO ${sch.paidDate ? `(${formatDateBR(sch.paidDate).slice(0,5)})` : ''}
+                                 </span>`
+                              : isEmpty ? '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-sky-100 text-sky-800 border border-sky-200">Quitado</span>'
+                              : `<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-slate-100 text-slate-600 border border-slate-200">
+                                  Em Aberto
+                                 </span>`
+                            }
+                          </td>
+                          <td class="py-3 px-3.5 text-right whitespace-nowrap">
+                            <div class="inline-flex items-center gap-1.5">
+                              <button onclick="editScheduleMonth('${ctr.id}', '${sch.id}')" title="Editar mês" class="px-2 py-1.5 rounded-lg bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-bold text-[11px] border border-indigo-200 transition">
+                                Editar
+                              </button>
+                              ${isPaid
+                                ? `<button onclick="undoSchedulePayment('${ctr.id}', '${sch.id}')" class="px-2.5 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 font-semibold text-[11px] transition">
+                                    Desfazer Pago
+                                   </button>`
+                                : isEmpty ? ''
+                                : `<button onclick="openPaymentModal('${ctr.id}', '${sch.id}')" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-[11px] shadow-xs transition inline-flex items-center gap-1">
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                                    <span>Marcar como Pago</span>
+                                   </button>`
+                              }
+                            </div>
+                          </td>
+                        </tr>
+                      `;
+                    }).join('')}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Folhas de Cheque deste Contrato -->
+            ${linkedChecks.length > 0 ? `
+              <div class="px-3.5 sm:px-5 pb-3.5 pt-2.5 border-t border-slate-100 min-w-0 max-w-full">
+                <details class="group">
+                  <summary class="list-none cursor-pointer flex items-center justify-between gap-2 text-[11px] font-bold uppercase tracking-wider text-slate-600 hover:text-slate-900 select-none py-1">
+                    <span>Folhas de Cheque Vinculadas (${linkedChecks.length}) • Aberto: ${formatBRL(openLinkedChecks.reduce((s, c) => s + Number(c.amount), 0))}</span>
+                    <span class="text-[10px] font-semibold text-indigo-600 group-open:hidden">Ver folhas</span>
+                    <span class="text-[10px] font-semibold text-slate-500 hidden group-open:inline">Ocultar</span>
+                  </summary>
+                  <div class="mt-2 max-h-48 overflow-y-auto pr-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1.5">
+                    ${[...linkedChecks].sort((a, b) => a.date.localeCompare(b.date)).map(chk => `
+                      <div class="text-[11px] bg-slate-50 border border-slate-200/90 rounded-lg px-2.5 py-1.5 flex items-center justify-between gap-2 min-w-0">
+                        <div class="truncate min-w-0">
+                          <span class="font-bold text-slate-900">#${esc(chk.number)}</span>
+                          <span class="text-slate-500"> • ${formatDateBR(chk.date).slice(0, 5)}</span>
+                          <span class="text-slate-400 hidden sm:inline"> (${esc(chk.bank)})</span>
+                        </div>
+                        <div class="flex items-center gap-1.5 shrink-0">
+                          <span class="font-bold text-slate-800">${formatBRL(chk.amount)}</span>
+                          <span class="px-1.5 py-0.5 rounded text-[9px] font-bold ${
+                            chk.status === 'aberto' ? 'bg-amber-100 text-amber-800' :
+                            chk.status === 'resgatado' ? 'bg-blue-100 text-blue-800' :
+                            chk.status === 'compensado' ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800'
+                          }">${chk.status === 'aberto' ? 'ABERTO' : chk.status.slice(0, 4).toUpperCase()}</span>
+                        </div>
+                      </div>
+                    `).join('')}
+                  </div>
+                </details>
+              </div>
+            ` : ''}
+          </div>
+        `;
+      }).join('');
+    }
+
+    // =========================================================================
+    // MODAL DE PAGAMENTO / AMORTIZAÇÃO MENSAL
+    // =========================================================================
+    function openPaymentModal(contractId, scheduleId = '') {
+      const ctr = appState.contracts.find(c => c.id === contractId);
+      if (!ctr) return;
+
+      const schItem = scheduleId ? ctr.schedule.find(s => s.id === scheduleId) : null;
+      const suggestedInterest = schItem
+        ? Number(schItem.interestExpected)
+        : Number(ctr.currentBalance) * (Number(ctr.monthlyRate) / 100);
+      const suggestedAmort = schItem ? Number(schItem.amortExpected) : 0;
+
+      document.getElementById('payContractId').value = ctr.id;
+      document.getElementById('payScheduleId').value = scheduleId || '';
+      document.getElementById('modalHeaderTitle').textContent = schItem
+        ? `Marcar Mês ${formatMonthBR(schItem.monthRef)} como Pago`
+        : 'Registrar Pagamento / Amortização';
+      document.getElementById('modalContractTitle').textContent = `${ctr.creditor} (${ctr.monthlyRate}% a.m.)`;
+      document.getElementById('modalCurrentBalance').textContent = formatBRL(ctr.currentBalance);
+      document.getElementById('modalSuggestedInterest').textContent = formatBRL(suggestedInterest);
+
+      document.getElementById('payDate').value = getTodayISO();
+      document.getElementById('payInterest').value = suggestedInterest.toFixed(2);
+      document.getElementById('payAmortization').value = suggestedAmort.toFixed(2);
+      document.getElementById('payNote').value = schItem ? `Pagamento referente a ${formatMonthBR(schItem.monthRef)}` : '';
+
+      const openChecks = appState.checks.filter(c => c.contractId === ctr.id && c.status === 'aberto');
+      const redeemWrapper = document.getElementById('modalCheckRedeemWrapper');
+      const redeemSelect = document.getElementById('payRedeemCheckId');
+
+      if (openChecks.length > 0) {
+        redeemWrapper.classList.remove('hidden');
+        redeemSelect.innerHTML = '<option value="">Não baixar nenhuma folha agora</option>' +
+          openChecks.map(c => `<option value="${c.id}">Baixar Ch. #${esc(c.number)} (${esc(c.bank)}) - ${formatDateBR(c.date)} - ${formatBRL(c.amount)}</option>`).join('');
+      } else {
+        redeemWrapper.classList.add('hidden');
+        redeemSelect.innerHTML = '<option value="">Nenhuma folha em aberto</option>';
+      }
+
+      updateModalPreview();
+      document.getElementById('paymentModal').classList.remove('hidden');
+    }
+
+    function closePaymentModal() {
+      document.getElementById('paymentModal').classList.add('hidden');
+    }
+
+    function updateModalPreview() {
+      const ctrId = document.getElementById('payContractId').value;
+      const ctr = appState.contracts.find(c => c.id === ctrId);
+      if (!ctr) return;
+
+      const interest = parseFloat(document.getElementById('payInterest').value) || 0;
+      const amort = parseFloat(document.getElementById('payAmortization').value) || 0;
+
+      const totalOut = interest + amort;
+      const newBalance = Math.max(0, Number(ctr.currentBalance) - amort);
+      const nextInterest = newBalance * (Number(ctr.monthlyRate) / 100);
+
+      document.getElementById('modalTotalOut').textContent = formatBRL(totalOut);
+      document.getElementById('modalNewBalance').textContent = formatBRL(newBalance);
+      document.getElementById('modalNextInterest').textContent = formatBRL(nextInterest);
+    }
+
+    function submitContractPayment(event) {
+      event.preventDefault();
+
+      const ctrId = document.getElementById('payContractId').value;
+      const scheduleId = document.getElementById('payScheduleId').value;
+      const idx = appState.contracts.findIndex(c => c.id === ctrId);
+      if (idx === -1) return;
+
+      const date = document.getElementById('payDate').value;
+      const interestPaid = parseFloat(document.getElementById('payInterest').value) || 0;
+      const amortizationPaid = parseFloat(document.getElementById('payAmortization').value) || 0;
+      const note = document.getElementById('payNote').value.trim();
+      const redeemCheckId = document.getElementById('payRedeemCheckId').value;
+
+      const ctr = appState.contracts[idx];
+
+      if (interestPaid < 0 || amortizationPaid < 0) { showToast('Valores não podem ser negativos.', 'error'); return; }
+      if (amortizationPaid > Number(ctr.currentBalance) + 0.005) {
+        showToast(`Amortização maior que o saldo devedor (${formatBRL(ctr.currentBalance)}).`, 'error');
+        return;
+      }
+
+      if (scheduleId) {
+        const schItem = ctr.schedule.find(s => s.id === scheduleId);
+        if (schItem) {
+          schItem.status = 'pago';
+          schItem.paidDate = date;
+          schItem.interestPaid = interestPaid;
+          schItem.amortPaid = amortizationPaid;
+          schItem.note = note;
+          schItem.redeemedCheckId = redeemCheckId || '';
+        }
+      } else {
+        ctr.schedule.push({
+          id: 'sch_' + Date.now(),
+          monthRef: date.slice(0, 7),
+          dueDate: date,
+          typeLabel: amortizationPaid > 0 ? 'Amortização + Juros' : 'Só Juros',
+          interestExpected: interestPaid,
+          amortExpected: amortizationPaid,
+          status: 'pago',
+          paidDate: date,
+          interestPaid,
+          amortPaid: amortizationPaid,
+          note
+        });
+      }
+
+      recalculateContractSchedule(ctr);
+
+      if (redeemCheckId) {
+        const chkIdx = appState.checks.findIndex(c => c.id === redeemCheckId);
+        if (chkIdx !== -1) {
+          appState.checks[chkIdx].status = 'resgatado';
+        }
+      }
+
+      saveState();
+      closePaymentModal();
+      renderAll();
+      showToast(`Mês marcado como PAGO! Novo saldo devedor: ${formatBRL(ctr.currentBalance)}`);
+    }
+
+    // =========================================================================
+    // NAVEGAÇÃO ENTRE ABAS, DASHBOARD E FOLHAS DE CHEQUE
+    // =========================================================================
+    function switchTab(tabName) {
+      const tabs = ['checks', 'contracts'];
+      tabs.forEach(t => {
+        const btn = document.getElementById(`tabBtn-${t}`);
+        const content = document.getElementById(`tabContent-${t}`);
+        if (btn && content) {
+          if (t === tabName) {
+            btn.className = 'tab-active flex items-center gap-2 px-6 py-4 text-sm whitespace-nowrap transition';
+            content.classList.remove('hidden');
+          } else {
+            btn.className = 'flex items-center gap-2 px-6 py-4 text-sm font-medium text-slate-600 hover:text-slate-900 whitespace-nowrap transition';
+            content.classList.add('hidden');
+          }
+        }
+      });
+    }
+
+    function clearDashFilters() {
+      document.getElementById('dashBankFilter').value = 'ALL';
+      document.getElementById('dashMonthFilter').value = '';
+      renderAll();
+    }
+
+    function renderDashboard() {
+      const bankSelect = document.getElementById('dashBankFilter');
+      const currentBankVal = bankSelect.value || 'ALL';
+      const monthVal = document.getElementById('dashMonthFilter').value || '';
+      const clearBtn = document.getElementById('btnClearDash');
+
+      const banksSet = new Set(appState.checks.map(c => c.bank).filter(Boolean));
+      const sortedBanks = Array.from(banksSet).sort((a, b) => a.localeCompare(b));
+
+      bankSelect.innerHTML = '<option value="ALL">Todos os Bancos</option>' +
+        sortedBanks.map(b => `<option value="${esc(b)}">${esc(b)}</option>`).join('');
+      bankSelect.value = sortedBanks.includes(currentBankVal) ? currentBankVal : 'ALL';
+
+      if (bankSelect.value !== 'ALL' || monthVal !== '') {
+        clearBtn.classList.remove('hidden');
+      } else {
+        clearBtn.classList.add('hidden');
+      }
+
+      const filteredChecks = appState.checks.filter(c => {
+        const matchBank = bankSelect.value === 'ALL' || c.bank === bankSelect.value;
+        const matchMonth = !monthVal || (c.date && c.date.startsWith(monthVal));
+        return matchBank && matchMonth;
+      });
+
+      const openChecks = filteredChecks.filter(c => c.status === 'aberto');
+      const openTotal = openChecks.reduce((s, c) => s + Number(c.amount || 0), 0);
+
+      let next7Total = 0;
+      let next30Total = 0;
+      openChecks.forEach(c => {
+        const diff = diffDaysFromToday(c.date);
+        if (diff >= 0 && diff <= 7) next7Total += Number(c.amount || 0);
+        if (diff >= 0 && diff <= 30) next30Total += Number(c.amount || 0);
+      });
+
+      let totalDebt = 0;
+      let totalMonthlyInterest = 0;
+      let activeContractsCount = 0;
+
+      appState.contracts.forEach(ctr => {
+        recalculateContractSchedule(ctr);
+        const bal = Number(ctr.currentBalance || 0);
+        if (bal > 0) {
+          activeContractsCount++;
+          totalDebt += bal;
+          totalMonthlyInterest += r2(bal * (Number(ctr.monthlyRate || 0) / 100));
+        }
+      });
+
+      document.getElementById('kpiOpenTotal').textContent = formatBRL(openTotal);
+      document.getElementById('kpiOpenCount').textContent = `${openChecks.length} ${openChecks.length === 1 ? 'folha a compensar' : 'folhas a compensar'}`;
+      document.getElementById('kpiNext7').textContent = formatBRL(next7Total);
+      document.getElementById('kpiNext30').textContent = `Próximos 30 dias: ${formatBRL(next30Total)}`;
+      document.getElementById('kpiDebtBalance').textContent = formatBRL(totalDebt);
+      document.getElementById('kpiActiveContracts').textContent = `${activeContractsCount} ${activeContractsCount === 1 ? 'contrato ativo' : 'contratos ativos'}`;
+      document.getElementById('kpiMonthlyInterest').textContent = formatBRL(totalMonthlyInterest);
+
+      document.getElementById('badgeChecksCount').textContent = String(appState.checks.length);
+      document.getElementById('badgeContractsCount').textContent = String(appState.contracts.length);
+
+      const contractSelect = document.getElementById('checkContractId');
+      if (contractSelect) {
+        contractSelect.innerHTML = appState.contracts.length === 0
+          ? '<option value="">Nenhum contrato cadastrado</option>'
+          : appState.contracts.map(ctr => `<option value="${ctr.id}">${esc(ctr.creditor)} (Saldo: ${formatBRL(ctr.currentBalance)})</option>`).join('');
+      }
+    }
+
+    function toggleCheckContractSelect() {
+      const type = document.getElementById('checkType').value;
+      const wrapper = document.getElementById('checkContractWrapper');
+      if (type === 'contrato') {
+        wrapper.classList.remove('hidden');
+      } else {
+        wrapper.classList.add('hidden');
+      }
+    }
+
+    function toggleBatchFields() {
+      const checked = document.getElementById('checkBatchMode').checked;
+      const fields = document.getElementById('batchFields');
+      if (checked) {
+        fields.classList.remove('hidden');
+      } else {
+        fields.classList.add('hidden');
+      }
+    }
+
+    function saveCheck(event) {
+      event.preventDefault();
+
+      const recipient = document.getElementById('checkRecipient').value.trim();
+      const bank = document.getElementById('checkBank').value.trim();
+      const number = document.getElementById('checkNumber').value.trim();
+      const date = document.getElementById('checkDate').value;
+      const amount = parseFloat(document.getElementById('checkAmount').value);
+      const type = document.getElementById('checkType').value;
+      const contractId = type === 'contrato' ? document.getElementById('checkContractId').value : '';
+      const note = document.getElementById('checkNote').value.trim();
+      const isBatch = document.getElementById('checkBatchMode').checked;
+      const batchQty = isBatch ? Math.max(2, parseInt(document.getElementById('batchQty').value, 10) || 2) : 1;
+      const batchInterval = isBatch ? Math.max(1, parseInt(document.getElementById('batchIntervalDays').value, 10) || 30) : 30;
+
+      if (!recipient || !bank || !number || !date || isNaN(amount) || amount <= 0) {
+        showToast('Preencha todos os campos obrigatórios do cheque.', 'error');
+        return;
+      }
+
+      if (editingCheckId) {
+        const chk = appState.checks.find(x => x.id === editingCheckId);
+        if (chk) Object.assign(chk, { type, contractId, recipient, bank, number, date, amount, note });
+        saveState(); cancelCheckEdit(); renderAll();
+        showToast('Cheque atualizado com sucesso!');
+        return;
+      }
+
+      for (let i = 0; i < batchQty; i++) {
+        appState.checks.unshift({
+          id: 'chk_' + Date.now() + '_' + i + '_' + Math.random().toString(36).slice(2, 5),
+          type,
+          contractId,
+          recipient,
+          bank,
+          number: i === 0 ? number : incrementCheckNumber(number, i),
+          date: i === 0 ? date : addDaysISO(date, i * batchInterval),
+          amount,
+          status: 'aberto',
+          note: isBatch ? `${note ? note + ' • ' : ''}Parcela ${i + 1}/${batchQty}` : note
+        });
+      }
+
+      saveState();
+      document.getElementById('checkForm').reset();
+      document.getElementById('checkDate').value = getTodayISO();
+      document.getElementById('batchFields').classList.add('hidden');
+      document.getElementById('checkContractWrapper').classList.add('hidden');
+      renderAll();
+      showToast(batchQty > 1 ? `${batchQty} folhas de cheque geradas com sucesso!` : 'Cheque salvo com sucesso!');
+    }
+
+    function setCheckStatusFilter(status) {
+      currentCheckStatusFilter = status;
+      const statuses = ['ALL', 'aberto', 'compensado', 'resgatado', 'devolvido'];
+      statuses.forEach(st => {
+        const btn = document.getElementById(`filterStatus-${st}`);
+        if (!btn) return;
+        if (st === status) {
+          btn.className = 'px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-900 text-white transition';
+        } else {
+          btn.className = 'px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition';
+        }
+      });
+      renderChecksTable();
+    }
+
+    function updateCheckStatus(id, newStatus) {
+      const idx = appState.checks.findIndex(c => c.id === id);
+      if (idx === -1) return;
+      appState.checks[idx].status = newStatus;
+      saveState();
+      renderAll();
+      showToast(`Cheque marcado como ${newStatus.toUpperCase()}.`);
+    }
+
+    function deleteCheck(id) {
+      if (!confirm('Excluir este cheque?')) return;
+      if (editingCheckId === id) cancelCheckEdit();
+      appState.checks = appState.checks.filter(c => c.id !== id);
+      saveState();
+      renderAll();
+      showToast('Folha de cheque excluída.', 'warning');
+    }
+
+    function renderChecksTable() {
+      const tbody = document.getElementById('checksTableBody');
+      const mobileList = document.getElementById('checksMobileList');
+      const searchTerm = (document.getElementById('checkSearchInput')?.value || '').trim().toLowerCase();
+
+      const filtered = appState.checks
+        .filter(c => currentCheckStatusFilter === 'ALL' || c.status === currentCheckStatusFilter)
+        .filter(c => {
+          if (!searchTerm) return true;
+          return (
+            (c.recipient || '').toLowerCase().includes(searchTerm) ||
+            (c.bank || '').toLowerCase().includes(searchTerm) ||
+            (c.number || '').toLowerCase().includes(searchTerm) ||
+            (c.note || '').toLowerCase().includes(searchTerm)
+          );
+        })
+        .sort((a, b) => (a.date || '').localeCompare(b.date || ''));
+
+      if (filtered.length === 0) {
+        if (tbody) {
+          tbody.innerHTML = `
+            <tr>
+              <td colspan="7" class="py-10 px-4 text-center text-slate-400 text-xs">
+                Nenhuma folha de cheque encontrada para os filtros atuais.
+              </td>
+            </tr>
+          `;
+        }
+        if (mobileList) {
+          mobileList.innerHTML = `
+            <div class="py-10 px-4 text-center text-slate-400 text-xs border border-slate-200 rounded-2xl bg-white">
+              Nenhuma folha de cheque encontrada para os filtros atuais.
+            </div>
+          `;
+        }
+        return;
+      }
+
+      if (mobileList) {
+        mobileList.innerHTML = filtered.map(c => {
+          const diff = diffDaysFromToday(c.date);
+          let dateBadge = '';
+          if (c.status === 'aberto') {
+            if (diff < 0) dateBadge = '<span class="ml-1.5 px-1.5 py-0.5 rounded bg-rose-100 text-rose-700 text-[10px] font-bold">Vencido</span>';
+            else if (diff === 0) dateBadge = '<span class="ml-1.5 px-1.5 py-0.5 rounded bg-rose-600 text-white text-[10px] font-bold">Hoje</span>';
+            else if (diff <= appState.settings.advanceDays) dateBadge = `<span class="ml-1.5 px-1.5 py-0.5 rounded bg-amber-100 text-amber-800 text-[10px] font-bold">Em ${diff}d</span>`;
+          }
+
+          const statusStyle = {
+            aberto: 'bg-amber-100 text-amber-900 border-amber-200',
+            compensado: 'bg-emerald-100 text-emerald-800 border-emerald-200',
+            resgatado: 'bg-blue-100 text-blue-800 border-blue-200',
+            devolvido: 'bg-rose-100 text-rose-800 border-rose-200'
+          }[c.status] || 'bg-slate-100 text-slate-700 border-slate-200';
+
+          return `
+            <div class="rounded-2xl border border-slate-200 bg-white p-3.5 shadow-2xs space-y-2.5">
+              <div class="flex items-start justify-between gap-2">
+                <div class="min-w-0">
+                  <div class="font-bold text-slate-900 text-sm truncate">${esc(c.recipient)}</div>
+                  <div class="text-[11px] text-slate-500 mt-0.5">${esc(c.bank)} • <span class="font-mono font-bold text-slate-700">#${esc(c.number)}</span></div>
+                </div>
+                <span class="px-2 py-0.5 rounded-full text-[10px] font-bold border shrink-0 ${statusStyle}">
+                  ${String(c.status || 'aberto').toUpperCase()}
+                </span>
+              </div>
+
+              <div class="flex items-center justify-between gap-2 bg-slate-50 rounded-xl px-3 py-2 border border-slate-100 text-xs">
+                <span class="font-semibold text-slate-700">${formatDateBR(c.date)}${dateBadge}</span>
+                <span class="font-extrabold text-slate-900 text-sm">${formatBRL(c.amount)}</span>
+              </div>
+
+              ${c.note ? `<p class="text-[11px] text-slate-500">${esc(c.note)}</p>` : ''}
+
+              <div class="flex items-center justify-between gap-1.5 pt-1">
+                <div class="flex items-center gap-1.5 flex-wrap">
+                  ${c.status !== 'compensado' ? `
+                    <button onclick="updateCheckStatus('${c.id}', 'compensado')" class="px-2.5 py-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-bold text-[11px] border border-emerald-200 transition">
+                      Compensar
+                    </button>
+                  ` : ''}
+                  ${c.status !== 'resgatado' ? `
+                    <button onclick="updateCheckStatus('${c.id}', 'resgatado')" class="px-2.5 py-1.5 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-700 font-bold text-[11px] border border-blue-200 transition">
+                      Resgatar
+                    </button>
+                  ` : ''}
+                  ${c.status === 'compensado' || c.status === 'resgatado' ? `
+                    <button onclick="updateCheckStatus('${c.id}', 'aberto')" class="px-2.5 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-[11px] transition">
+                      Reabrir
+                    </button>
+                  ` : ''}
+                </div>
+
+                <div class="flex items-center gap-1 shrink-0">
+                  <button onclick="editCheck('${c.id}')" title="Editar cheque" class="p-1.5 rounded-lg text-slate-500 hover:text-blue-600 hover:bg-blue-50 transition">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536M9 13l-1 4 4-1 8.5-8.5a2.5 2.5 0 00-3.536-3.536L9 13z"/></svg>
+                  </button>
+                  <button onclick="deleteCheck('${c.id}')" title="Excluir cheque" class="p-1.5 rounded-lg text-slate-500 hover:text-rose-600 hover:bg-rose-50 transition">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      if (!tbody) return;
+      tbody.innerHTML = filtered.map(c => {
+        const diff = diffDaysFromToday(c.date);
+        let dateBadge = '';
+        if (c.status === 'aberto') {
+          if (diff < 0) dateBadge = '<span class="ml-1.5 px-1.5 py-0.5 rounded bg-rose-100 text-rose-700 text-[10px] font-bold">Vencido</span>';
+          else if (diff === 0) dateBadge = '<span class="ml-1.5 px-1.5 py-0.5 rounded bg-rose-600 text-white text-[10px] font-bold">Hoje</span>';
+          else if (diff <= appState.settings.advanceDays) dateBadge = `<span class="ml-1.5 px-1.5 py-0.5 rounded bg-amber-100 text-amber-800 text-[10px] font-bold">Em ${diff}d</span>`;
+        }
+
+        const statusStyle = {
+          aberto: 'bg-amber-100 text-amber-900 border-amber-200',
+          compensado: 'bg-emerald-100 text-emerald-800 border-emerald-200',
+          resgatado: 'bg-blue-100 text-blue-800 border-blue-200',
+          devolvido: 'bg-rose-100 text-rose-800 border-rose-200'
+        }[c.status] || 'bg-slate-100 text-slate-700 border-slate-200';
+
+        return `
+          <tr class="hover:bg-slate-50 transition">
+            <td class="py-3 px-4 whitespace-nowrap font-semibold text-slate-800">
+              ${formatDateBR(c.date)}${dateBadge}
+            </td>
+            <td class="py-3 px-4">
+              <div class="font-bold text-slate-900">${esc(c.recipient)}</div>
+              ${c.note ? `<div class="text-[11px] text-slate-500">${esc(c.note)}</div>` : ''}
+            </td>
+            <td class="py-3 px-4 whitespace-nowrap text-slate-700 font-medium">${esc(c.bank)}</td>
+            <td class="py-3 px-4 whitespace-nowrap font-mono font-bold text-slate-900">#${esc(c.number)}</td>
+            <td class="py-3 px-4 whitespace-nowrap text-right font-extrabold text-slate-900">${formatBRL(c.amount)}</td>
+            <td class="py-3 px-4 whitespace-nowrap text-center">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold border ${statusStyle}">
+                ${String(c.status || 'aberto').toUpperCase()}
+              </span>
+            </td>
+            <td class="py-3 px-4 whitespace-nowrap text-right">
+              <div class="inline-flex items-center gap-1">
+                ${c.status !== 'compensado' ? `
+                  <button onclick="updateCheckStatus('${c.id}', 'compensado')" title="Marcar como Compensado" class="px-2 py-1 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-bold text-[11px] border border-emerald-200 transition">
+                    Compensar
+                  </button>
+                ` : ''}
+                ${c.status !== 'resgatado' ? `
+                  <button onclick="updateCheckStatus('${c.id}', 'resgatado')" title="Marcar como Resgatado / Pago fora do cheque" class="px-2 py-1 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-700 font-bold text-[11px] border border-blue-200 transition">
+                    Resgatar
+                  </button>
+                ` : ''}
+                ${c.status === 'compensado' || c.status === 'resgatado' ? `
+                  <button onclick="updateCheckStatus('${c.id}', 'aberto')" title="Reabrir cheque" class="px-2 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-[11px] transition">
+                    Reabrir
+                  </button>
+                ` : ''}
+                <button onclick="editCheck('${c.id}')" title="Editar cheque" class="p-1.5 rounded-lg text-slate-400 hover:text-blue-600 hover:bg-blue-50 transition">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536M9 13l-1 4 4-1 8.5-8.5a2.5 2.5 0 00-3.536-3.536L9 13z"/></svg>
+                </button>
+                <button onclick="deleteCheck('${c.id}')" title="Excluir cheque" class="p-1.5 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                </button>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function renderAll() {
+      renderAlerts();
+      renderDashboard();
+      renderChecksTable();
+      renderInterestPanel();
+      renderContracts();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      loadState();
+      document.getElementById('checkDate').value = getTodayISO();
+      document.getElementById('contractStartDate').value = getTodayISO();
+
+      updateNotifLabel();
+      ['contractPrincipal', 'contractStartDate', 'contractAmortizationStart', 'contractParcels'].forEach(id => {
+        const e = document.getElementById(id);
+        if (e) e.addEventListener('input', autoFillContract);
+      });
+      ['contractTotalMonths', 'contractPlannedAmort'].forEach(id => {
+        const e = document.getElementById(id);
+        if (e) e.addEventListener('input', updateContractPreview);
+      });
+      updateContractPreview();
+      renderAll();
+      setTimeout(() => triggerBrowserAndSoundAlert(false), 800);
+      setInterval(() => triggerBrowserAndSoundAlert(false), 5 * 60 * 1000);
+    });
+  </script>
+  <script>
+    // ===== PWA: service worker, instalação e armazenamento persistente =====
+    (function () {
+      const isStandalone = () => window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+      const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+      let deferredPrompt = null;
+      const btn = () => document.getElementById('btnInstall');
+      const showBtn = () => { const b = btn(); if (b && !isStandalone()) { b.classList.remove('hidden'); b.classList.add('flex'); } };
+      const hideBtn = () => { const b = btn(); if (b) { b.classList.add('hidden'); b.classList.remove('flex'); } };
+
+      window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); deferredPrompt = e; showBtn(); });
+      window.addEventListener('appinstalled', () => { deferredPrompt = null; hideBtn(); showToast('App instalado com sucesso!'); });
+      window.addEventListener('DOMContentLoaded', () => { if (isIOS && !isStandalone()) showBtn(); });
+
+      window.installApp = async function () {
+        if (deferredPrompt) {
+          deferredPrompt.prompt();
+          try { await deferredPrompt.userChoice; } catch (e) {}
+          deferredPrompt = null; hideBtn();
+        } else if (isIOS) {
+          alert('No iPhone/iPad (Safari): toque em Compartilhar (quadrado com seta) e depois em "Adicionar à Tela de Início".');
+        } else {
+          alert('Use o menu do navegador e escolha "Instalar app" (ou "Adicionar à tela inicial").');
+        }
+      };
+
+      if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('./sw.js').catch(() => {
+            try {
+              const swBlob = new Blob([`const CACHE_NAME = 'gfc-standalone-v1';
+self.addEventListener('install', e => {
+  e.waitUntil(caches.open(CACHE_NAME).then(c => c.addAll(['./'])).catch(() => {}).then(() => self.skipWaiting()));
+});
+self.addEventListener('activate', e => {
+  e.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k)))).then(() => self.clients.claim()));
+});
+self.addEventListener('fetch', e => {
+  if (e.request.method !== 'GET') return;
+  const url = new URL(e.request.url);
+  if (url.origin !== self.location.origin) return;
+  e.respondWith(
+    fetch(e.request).then(res => {
+      if (res && res.ok) {
+        const clone = res.clone();
+        caches.open(CACHE_NAME).then(c => c.put(e.request, clone)).catch(() => {});
+      }
+      return res;
+    }).catch(() => caches.match(e.request).then(m => m || caches.match('./')))
+  );
+});`], { type: 'application/javascript' });
+              const swUrl = URL.createObjectURL(swBlob);
+              navigator.serviceWorker.register(swUrl, { scope: './' }).catch(() => {});
+            } catch (_) {}
+          });
+        });
+      }
+      // Pede ao navegador para não apagar os dados salvos do app
+      if (navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(() => {});
+    })();
+  </script>
+</body>
+</html>
